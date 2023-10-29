@@ -19,7 +19,7 @@ ticker_list = ['NNDM' ,'OPTT' ,'RWLK', 'CLSK' ,'LTRX' ,'MARA' ,
                'MOSYX' , 'TRT' ,'GMDA' ,'AFIB' ,'SCYX' ,
                'DTIL','ALIM','RMBL','AMSC', 
                'INGN','VSTM','KSCP','HUBC', 'STXS', 'APRN','EKSO','ITI',
-               'MRAM','ISDR','EYPT','CASS','BWAY']
+               'MRAM','ISDR','EYPT','CASS','BWAY','DAIO','DCTH','RELL']
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
 #data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
@@ -88,6 +88,9 @@ data = [
         yf.download(tickers = 'EYPT' ,period='1d', start='2023-08-30'),
         yf.download(tickers = 'CASS' ,period='1d', start='2023-09-08'),
         yf.download(tickers = 'BWAY' ,period='1d', start='2023-09-15'),
+        yf.download(tickers = 'DAIO' ,period='1d', start='2022-09-15'),
+        yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),
+        yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),
         
         
         ]
