@@ -1,16 +1,12 @@
 from pprint import pprint
 import smtplib, ssl
 from email.message import EmailMessage
-
-
-
 ##!<import pandas as pd
 ##!<import matplotlib.pyplot as plt
 ##!<from datetime import datetime
 
 # Raw Package
 import numpy as np
-
 
 #Data Source
 import yfinance as yf
@@ -92,9 +88,10 @@ def data_dl():
           yf.download(tickers = 'CASS' ,period='1d', start='2023-09-08'),
           yf.download(tickers = 'BWAY' ,period='1d', start='2023-09-15'),
           yf.download(tickers = 'DAIO' ,period='1d', start='2022-09-15'),
+          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-01'),
+
           yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
           yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),
-          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-01'),
           yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'),
           yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'),
           yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),
@@ -123,7 +120,7 @@ def send_email():
     server.login(sender_email, password)
     server.sendmail(sender_email, receiver_email, message)
     
-def send_email2(first_opening_price, latest_opening_price, price_drop, ticker):
+def send_email2(first_opening_price, latest_opening_price, price_drop, roc, ticker):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
@@ -132,8 +129,9 @@ def send_email2(first_opening_price, latest_opening_price, price_drop, ticker):
   
   msg = EmailMessage()
   msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
-                  "   \n" + "Your latest opening price was " + str(latest_opening_price))
-  msg['Subject'] = ticker + " price drop: " + str(price_drop)
+                  "   \n" + "Your latest opening price is " + str(latest_opening_price) +
+                  "   \n" + "Your price drop is " + str(price_drop))
+  msg['Subject'] = ticker + " price drop: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   
@@ -142,7 +140,7 @@ def send_email2(first_opening_price, latest_opening_price, price_drop, ticker):
       server.login(sender_email, password)
       server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
-def send_email3(first_opening_price, latest_opening_price, price_hike, ticker):
+def send_email3(first_opening_price, latest_opening_price, price_hike, roc, ticker):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
@@ -151,8 +149,9 @@ def send_email3(first_opening_price, latest_opening_price, price_hike, ticker):
   
   msg = EmailMessage()
   msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
-                  "   \n" + "Your latest opening price was " + str(latest_opening_price))
-  msg['Subject'] = ticker + " price hike: " + str(price_hike)
+                  "   \n" + "Your latest opening price is " + str(latest_opening_price) +
+                  "   \n" + "Your price hike is " + str(price_hike))
+  msg['Subject'] = ticker + " price hike: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   
@@ -161,18 +160,6 @@ def send_email3(first_opening_price, latest_opening_price, price_hike, ticker):
       server.login(sender_email, password)
       server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
-# n=0
-# for line in data:
-#     print(ticker_list[n],line)
-#     n+=1
-
-
-#fig = go.Figure(data = go.Candlestick(x = data[0].index, open = data[0]['Open'], high=data[0], low=data[0], close=data[0], name = 'market data'))
-# fig = go.Figure()
-# fig.add_trace(go.Candlestick(x = data[0].index, open = data[0]['Open'], high=data[0]['High'], low=data[0]['Low'], close=data[0]['Close'], name = 'HGEN' ))
-# fig.add_traces(go.Candlestick(x = data[1].index, open = data[1]['Open'], high=data[1]['High'], low=data[1]['Low'], close=data[1]['Close'], name = 'INGN'))
-# fig.add_traces(go.Candlestick(x = data[2].index, open = data[2]['Open'], high=data[2]['High'], low=data[2]['Low'], close=data[2]['Close'], name = 'VSTM'))
-# fig.add_traces(go.Candlestick(x = data[3].index, open = data[3]['Open'], high=data[3]['High'], low=data[3]['Low'], close=data[3]['Close'], name = 'KSCP'))
 # fig.add_traces(go.Candlestick(x = data[4].index, open = data[4]['Open'], high=data[4]['High'], low=data[4]['Low'], close=data[4]['Close'], name = 'VSTM'))
 
 # fig.show()
@@ -193,45 +180,23 @@ def main():
         #if ending_price < starting_price:
         first_opening_price = line['Open'][0]
         latest_opening_price = line['Open'][-1]
-        if(latest_opening_price < first_opening_price*0.8):
+        
+        #(New Price - Old Price)/Old Price and then multiply that number by 100
+        roc = ((latest_opening_price - first_opening_price) / first_opening_price) * 100;    
+
+        #if(latest_opening_price < first_opening_price*0.8):
+        if roc < 0:
            print("Opening price drop found on ticker ", ticker)
            price_drop = first_opening_price - latest_opening_price
-           send_email2( round(first_opening_price,3),round(latest_opening_price,3),round(price_drop,3), ticker)
-        if(latest_opening_price * 0.90 > first_opening_price):
+           send_email2( round(first_opening_price,3),round(latest_opening_price,3),round(price_drop,3), round(roc,3), ticker)
+        #if(latest_opening_price * 0.90 > first_opening_price):
+        if roc >= 0:
            print("Opening price hike found on ticker ", ticker)
            price_hike = latest_opening_price - first_opening_price
-           send_email3( round(first_opening_price,3),round(latest_opening_price,3),round(price_hike,3), ticker)
-
-
-           
-
-
-        #print("DEBUG ", ticker , " ", first_closing_price, " ", latest_closing_price)
-       
+           send_email3( round(first_opening_price,3),round(latest_opening_price,3),round(price_hike,3), round(roc,3), ticker)
         
-        fig.add_trace(go.Candlestick(x = line.index, open = line['Open'], high=line['High'], low=line['Low'], close=line['Open'], name = ticker ))
+        #fig.add_trace(go.Candlestick(x = line.index, open = line['Open'], high=line['High'], low=line['Low'], close=line['Open'], name = ticker ))
 
-  # for list, ticker in zip(data, ticker_list):
-  #     n = -2
-  #     recent_highest = list['Close'][-1]
-  #     previous_highest = list['Close'][n]
-  #     ndips = 0  
-  
-  #     while ndips < 2:
-  #             if(recent_highest< previous_highest):
-  #                 n -= 1
-  #                 recent_highest = previous_highest
-  #                 previous_highest = list['Close'][n]
-  #             else:
-  #                  ndips +=1
-  #                  n -= 1
-  #                  recent_highest = previous_highest
-  #                  previous_highest = list['Close'][n]
-  
-  
-  
-  
-      
       # fig.add_trace(go.Candlestick(
       #     x=list.index[n:],  
       #     open=list['Open'], 
@@ -245,24 +210,15 @@ def main():
   
   
   
-#   fig.update_traces(selector=dict(name = 'INGN'), increasing_line=dict(color='blue'), increasing_fillcolor = 'blue', decreasing_line=dict(color='yellow'), decreasing_fillcolor = 'yellow')
-
-#   fig.update_traces(selector=dict(name = 'VSTM'),  increasing_line=dict(color='magenta'),  increasing_fillcolor = 'magenta',   decreasing_line=dict(color='orange'), decreasing_fillcolor = 'orange')
-#   fig.update_traces(selector=dict(name = 'KSCP'),  increasing_line=dict(color='cyan'),     increasing_fillcolor = 'cyan',      decreasing_line=dict(color='pink'),   decreasing_fillcolor = 'pink')
-#   fig.update_traces(selector=dict(name = 'VSTM'),  increasing_line=dict(color='magenta'),  increasing_fillcolor = 'magenta',   decreasing_line=dict(color='orange'), decreasing_fillcolor = 'orange')
-#   fig.update_traces(selector=dict(name = 'HUBC'),  increasing_line=dict(color='teal'),     increasing_fillcolor = 'teal',      decreasing_line=dict(color='coral'),  decreasing_fillcolor = 'coral')
-#   fig.update_traces(selector=dict(name = 'HYREQ'), increasing_line=dict(color='lavender'), increasing_fillcolor = 'lavender',  decreasing_line=dict(color='crimson'),decreasing_fillcolor = 'crimson')
-#   fig.update_traces(selector=dict(name = 'VGFCQ'), increasing_line=dict(color='turquoise'),increasing_fillcolor = 'turquoise', decreasing_line=dict(color='gold'),   decreasing_fillcolor = 'gold')
-#   fig.update_traces(selector=dict(name = 'STXS'),  increasing_line=dict(color='aquamarine'),increasing_fillcolor = 'aquamarine',decreasing_line=dict(color='linen'),decreasing_fillcolor = 'linen')
 #   fig.update_traces(selector=dict(name = 'APRN'),  increasing_line=dict(color='indigo'),   increasing_fillcolor = 'indigo',    decreasing_line=dict(color='firebrick'),  decreasing_fillcolor = 'firebrick')
                     
   
   
   
-  fig.update_layout(title="Candlestick Chart for Multiple Stocks",
-                    xaxis_title="Date",
-                    yaxis_title="Stock Price",
-                    xaxis_rangeslider_visible=True)
+  #fig.update_layout(title="Candlestick Chart for Multiple Stocks",
+  #                  xaxis_title="Date",
+  #                  yaxis_title="Stock Price",
+  #                  xaxis_rangeslider_visible=True)
   
   
   #fig.show()
