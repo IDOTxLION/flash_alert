@@ -109,25 +109,6 @@ def data_dl():
           ]
   return data
 
-def send_email():
-  #if the price drops below 20% of the start date
-  port = 587  # For SSL
-  smtp_server = "smtp.gmail.com"
-  sender_email = "aaleensyed20@gmail.com"  # Enter your address
-  receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = 'Reallion1!'
-  message = """\
-  Subject: Hi
-  
-  This message is sent from Tickers.py ."""
-  
-  context = ssl.create_default_context()
-  with smtplib.SMTP(smtp_server, port) as server:
-    server.ehlo()  # Can be omitted
-    server.starttls(context=context)
-    server.ehlo()  # Can be omitted
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
     
 def send_email2(first_closing_price, price_drop, ticker):
   port = 465  # For SSL

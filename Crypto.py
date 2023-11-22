@@ -30,21 +30,17 @@ def data_dl():
           yf.download(tickers = 'MKR-USD' ,period='1d', start='2023-01-06'),
           yf.download(tickers = 'BAT-USD' ,period='1d', start='2023-01-26'),
           yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-02-02'),
-          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-01-12'),
+          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-07-31'),
+          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-11-12'),
           #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-01-12'),
-        
-        
-          
-          
+          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-11-12'),
+          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-11-12'),
           ]
   return data
 
 
     
-def send_email2(first_closing_price, price_drop, crypto):
+def send_email2(first_closing_price, latest_closing_price, price_drop, crypto):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
@@ -52,7 +48,7 @@ def send_email2(first_closing_price, price_drop, crypto):
   password = "epfb ajgv pzgw rlle"
   
   msg = EmailMessage()
-  msg.set_content("Hi \n" + "Your first closing price was " + str(first_closing_price))
+  msg.set_content("Hi \n" + "Your first closing price was " + str(first_closing_price) + ' to '+ str(latest_closing_price))
   msg['Subject'] = crypto + " price drop: " + str(price_drop)
   msg['From'] = sender_email
   msg['To'] = receiver_email
@@ -94,7 +90,7 @@ def main():
         latest_closing_price = line['Close'][-1]
         if(latest_closing_price < first_closing_price*0.8):
            price_drop = first_closing_price - latest_closing_price
-           send_email2( first_closing_price,price_drop, crypto)
+           send_email2( first_closing_price,latest_closing_price,price_drop, crypto)
 
 
            
@@ -115,7 +111,7 @@ def main():
                     xaxis_rangeslider_visible=True)
   
   
-  fig.show()
+  #fig.show()
 
 if __name__ == "__main__":
      main()
