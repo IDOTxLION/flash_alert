@@ -19,10 +19,7 @@ import yfinance as yf
 import plotly.graph_objs as go
 
 ticker_list = ['RWLK', 'ITI', 'MRAM','ISDR','EYPT','CASS','BWAY','DAIO','CYBN',
-               'DCTH','RELL','WATT','MCRB','SENS']
-#yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
-#data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
-#data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
+               'DCTH', 'RELL', 'WATT','MCRB','SENS']
 
 def data_dl():
   '''
@@ -88,17 +85,16 @@ def data_dl():
   '''
   data = [
           yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),
-          yf.download(tickers = 'ITI' ,period='1d', start='2023-08-24'),
+          yf.download(tickers = 'ITI'  ,period='1d', start='2023-08-24'),
           yf.download(tickers = 'MRAM' ,period='1d', start='2023-08-28'),
           yf.download(tickers = 'ISDR' ,period='1d', start='2023-08-29'),
           yf.download(tickers = 'EYPT' ,period='1d', start='2023-08-30'),
           yf.download(tickers = 'CASS' ,period='1d', start='2023-09-08'),
           yf.download(tickers = 'BWAY' ,period='1d', start='2023-09-15'),
           yf.download(tickers = 'DAIO' ,period='1d', start='2022-09-15'),
-          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-01'),
-
-          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),
           yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
+          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),
+          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-01'),
           yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'),
           yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'),
           yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),
@@ -109,9 +105,11 @@ def send_email():
   #if the price drops below 20% of the start date
   port = 587  # For SSL
   smtp_server = "smtp.gmail.com"
+  #sender_email = "abbmir@gmail.com"  # Enter your address
+  #password = 'xgrc snii xehx sbwp'
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
+  password = 'stct gxna upbz hofd'
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = 'Reallion1!'
   message = """\
   Subject: Hi
   
@@ -125,15 +123,16 @@ def send_email():
     server.login(sender_email, password)
     server.sendmail(sender_email, receiver_email, message)
     
-def send_email2(first_closing_price, price_drop, ticker):
+def send_email2(first_opening_price, latest_opening_price, price_drop, ticker):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = "epfb ajgv pzgw rlle"
+  password = 'stct gxna upbz hofd'
   
   msg = EmailMessage()
-  msg.set_content("Hi \n" + "Your first closing price was " + str(first_closing_price))
+  msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
+                  "   \n" + "Your latest opening price was " + str(latest_opening_price))
   msg['Subject'] = ticker + " price drop: " + str(price_drop)
   msg['From'] = sender_email
   msg['To'] = receiver_email
@@ -143,6 +142,24 @@ def send_email2(first_closing_price, price_drop, ticker):
       server.login(sender_email, password)
       server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
+def send_email3(first_opening_price, latest_opening_price, price_hike, ticker):
+  port = 465  # For SSL
+  smtp_server = "smtp.gmail.com"
+  sender_email = "aaleensyed20@gmail.com"  # Enter your address
+  receiver_email = "abbmir@gmail.com"  # Enter receiver address
+  password = 'stct gxna upbz hofd'
+  
+  msg = EmailMessage()
+  msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
+                  "   \n" + "Your latest opening price was " + str(latest_opening_price))
+  msg['Subject'] = ticker + " price hike: " + str(price_hike)
+  msg['From'] = sender_email
+  msg['To'] = receiver_email
+  
+  context = ssl.create_default_context()
+  with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+      server.login(sender_email, password)
+      server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
 # n=0
 # for line in data:
@@ -169,13 +186,21 @@ def main():
   for line, ticker in zip(data,ticker_list):
        # starting_price = line['Close'][0]  
         #ending_price = line['Close'][-1]   
-    
+
+        #for o in line['Open']:
+        #   print (str(o) + " for " + ticker)
+
         #if ending_price < starting_price:
-        first_closing_price = line['Close'][0]
-        latest_closing_price = line['Close'][-1]
-        if(latest_closing_price < first_closing_price*0.8):
-           price_drop = first_closing_price - latest_closing_price
-           send_email2( first_closing_price,price_drop, ticker)
+        first_opening_price = line['Open'][0]
+        latest_opening_price = line['Open'][-1]
+        if(latest_opening_price < first_opening_price*0.8):
+           print("Opening price drop found on ticker ", ticker)
+           price_drop = first_opening_price - latest_opening_price
+           send_email2( round(first_opening_price,3),round(latest_opening_price,3),round(price_drop,3), ticker)
+        if(latest_opening_price * 0.90 > first_opening_price):
+           print("Opening price hike found on ticker ", ticker)
+           price_hike = latest_opening_price - first_opening_price
+           send_email3( round(first_opening_price,3),round(latest_opening_price,3),round(price_hike,3), ticker)
 
 
            
@@ -184,7 +209,7 @@ def main():
         #print("DEBUG ", ticker , " ", first_closing_price, " ", latest_closing_price)
        
         
-        fig.add_trace(go.Candlestick(x = line.index, open = line['Open'], high=line['High'], low=line['Low'], close=line['Close'], name = ticker ))
+        fig.add_trace(go.Candlestick(x = line.index, open = line['Open'], high=line['High'], low=line['Low'], close=line['Open'], name = ticker ))
 
   # for list, ticker in zip(data, ticker_list):
   #     n = -2
