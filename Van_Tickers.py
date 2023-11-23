@@ -78,59 +78,60 @@ def data_dl():
           yf.download(tickers = 'EKSO' ,period='1d', start='2023-01-10'),
           # yf.download(tickers = 'AFIB' ,period='1d', start='2022-03-09'), sell on 11/09/2023
           # yf.download(tickers = 'CDLX' ,period='1d', start='2023-09-01'), sell on 11/09/2023
+  data2 = [
+          yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'), 
+          yf.download(tickers = 'ITI'  ,period='1d', start='2023-08-24'), 
+          yf.download(tickers = 'MRAM' ,period='1d', start='2023-08-28'), 
+          yf.download(tickers = 'ISDR' ,period='1d', start='2023-08-29'), 
+          yf.download(tickers = 'EYPT' ,period='1d', start='2023-08-30'), 
+          yf.download(tickers = 'CASS' ,period='1d', start='2023-09-08'), 
+          yf.download(tickers = 'BWAY' ,period='1d', start='2023-09-15'), 
+          yf.download(tickers = 'DAIO' ,period='1d', start='2022-09-15'), 
+          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-01'), 
+                                                                          
+          yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
+          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'), 
+          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'), 
+          yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), 
+          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'), 
+          ]
   '''
   data = [
-          yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),
-          yf.download(tickers = 'ITI'  ,period='1d', start='2023-08-24'),
-          yf.download(tickers = 'MRAM' ,period='1d', start='2023-08-28'),
-          yf.download(tickers = 'ISDR' ,period='1d', start='2023-08-29'),
-          yf.download(tickers = 'EYPT' ,period='1d', start='2023-08-30'),
-          yf.download(tickers = 'CASS' ,period='1d', start='2023-09-08'),
-          yf.download(tickers = 'BWAY' ,period='1d', start='2023-09-15'),
-          yf.download(tickers = 'DAIO' ,period='1d', start='2022-09-15'),
-          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-01'),
-
+          yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
+          yf.download(tickers = 'ITI'  ,period='1d', start='2023-10-23'), 
+          yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'), 
+          yf.download(tickers = 'ISDR' ,period='1d', start='2023-09-19'), 
+          yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-18'), 
+          yf.download(tickers = 'CASS' ,period='1d', start='2023-10-03'), 
+          yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), 
+          yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), 
+          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'), 
+                                                                          
           yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
-          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),
-          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'),
-          yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'),
-          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),
+          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'), 
+          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'), 
+          yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), 
+          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'), 
           ]
   return data
 
-def send_email():
-  #if the price drops below 20% of the start date
-  port = 587  # For SSL
-  smtp_server = "smtp.gmail.com"
-  #sender_email = "abbmir@gmail.com"  # Enter your address
-  #password = 'xgrc snii xehx sbwp'
-  sender_email = "aaleensyed20@gmail.com"  # Enter your address
-  password = 'stct gxna upbz hofd'
-  receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  message = """\
-  Subject: Hi
-  
-  This message is sent from Tickers.py ."""
-  
-  context = ssl.create_default_context()
-  with smtplib.SMTP(smtp_server, port) as server:
-    server.ehlo()  # Can be omitted
-    server.starttls(context=context)
-    server.ehlo()  # Can be omitted
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
-    
-def send_email2(first_opening_price, latest_opening_price, price_drop, roc, ticker):
+def send_email2(first_opening_price, latest_market_price, price_drop, roc, ticker):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
   password = 'stct gxna upbz hofd'
   
+  stop_price = round(first_opening_price * 0.85, 2)
+  limit_price = round(first_opening_price * 0.8, 2)
+
   msg = EmailMessage()
   msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
-                  "   \n" + "Your latest opening price is " + str(latest_opening_price) +
-                  "   \n" + "Your price drop is " + str(price_drop))
+                  "   \n" + "Your latest market price is " + str(latest_market_price) +
+                  "   \n" + "Your price drop is " + str(price_drop) +
+                  "   \n" + "Your stop price is " + str(stop_price) +
+                  "   \n" + "Your limit price is " + str(limit_price))
+
   msg['Subject'] = ticker + " price drop: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
@@ -140,17 +141,22 @@ def send_email2(first_opening_price, latest_opening_price, price_drop, roc, tick
       server.login(sender_email, password)
       server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
-def send_email3(first_opening_price, latest_opening_price, price_hike, roc, ticker):
+def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticker):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
   password = 'stct gxna upbz hofd'
   
+  stop_price = round(first_opening_price * 1.6, 2)
+  limit_price = round(first_opening_price * 1.7, 2)
+
   msg = EmailMessage()
   msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
-                  "   \n" + "Your latest opening price is " + str(latest_opening_price) +
-                  "   \n" + "Your price hike is " + str(price_hike))
+                  "   \n" + "Your latest market price is " + str(latest_market_price) +
+                  "   \n" + "Your price hike is " + str(price_hike) +
+                  "   \n" + "Your stop price is " + str(stop_price) +
+                  "   \n" + "Your limit price is " + str(limit_price))
   msg['Subject'] = ticker + " price hike: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
@@ -179,21 +185,21 @@ def main():
 
         #if ending_price < starting_price:
         first_opening_price = line['Open'][0]
-        latest_opening_price = line['Open'][-1]
+        latest_market_price = line['Close'][-1]
         
         #(New Price - Old Price)/Old Price and then multiply that number by 100
-        roc = ((latest_opening_price - first_opening_price) / first_opening_price) * 100;    
+        roc = ((latest_market_price - first_opening_price) / first_opening_price) * 100;    
 
-        #if(latest_opening_price < first_opening_price*0.8):
+        #if(latest_market_price < first_opening_price*0.8):
         if roc < 0:
            print("Opening price drop found on ticker ", ticker)
-           price_drop = first_opening_price - latest_opening_price
-           send_email2( round(first_opening_price,3),round(latest_opening_price,3),round(price_drop,3), round(roc,3), ticker)
-        #if(latest_opening_price * 0.90 > first_opening_price):
+           price_drop = first_opening_price - latest_market_price
+           send_email2( round(first_opening_price,3),round(latest_market_price,3),round(price_drop,3), round(roc,3), ticker)
+        #if(latest_market_price * 0.90 > first_opening_price):
         if roc >= 0:
            print("Opening price hike found on ticker ", ticker)
-           price_hike = latest_opening_price - first_opening_price
-           send_email3( round(first_opening_price,3),round(latest_opening_price,3),round(price_hike,3), round(roc,3), ticker)
+           price_hike = latest_market_price - first_opening_price
+           send_email3( round(first_opening_price,3),round(latest_market_price,3),round(price_hike,3), round(roc,3), ticker)
         
         #fig.add_trace(go.Candlestick(x = line.index, open = line['Open'], high=line['High'], low=line['Low'], close=line['Open'], name = ticker ))
 
