@@ -100,18 +100,12 @@ def data_dl():
           yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
           yf.download(tickers = 'ITI'  ,period='1d', start='2023-10-23'), 
           yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'), 
-          yf.download(tickers = 'ISDR' ,period='1d', start='2023-09-19'), 
-          yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-18'), 
+          yf.download(tickers = 'ISDR' ,period='1d', start='2023-09-20'), 
+          yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'), 
           yf.download(tickers = 'CASS' ,period='1d', start='2023-10-03'), 
           yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), 
           yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), 
           yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'), 
-                                                                          
-          yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
-          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'), 
-          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'), 
-          yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), 
-          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'), 
           ]
   return data
 
@@ -120,7 +114,8 @@ def send_email2(first_opening_price, latest_market_price, price_drop, roc, ticke
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = 'stct gxna upbz hofd'
+  #password = 'stct gxna upbz hofd'
+  password = "txpw qshd uhvk fdgu"
   
   stop_price = round(first_opening_price * 0.85, 2)
   limit_price = round(first_opening_price * 0.8, 2)
@@ -132,7 +127,7 @@ def send_email2(first_opening_price, latest_market_price, price_drop, roc, ticke
                   "   \n" + "Your stop price is " + str(stop_price) +
                   "   \n" + "Your limit price is " + str(limit_price))
 
-  msg['Subject'] = ticker + " price drop: " + str(roc) + "%"
+  msg['Subject'] = "[Vanguard(" + ticker + ")] price drop: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   
@@ -146,18 +141,16 @@ def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticke
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = 'stct gxna upbz hofd'
+  password = "txpw qshd uhvk fdgu"
   
-  stop_price = round(first_opening_price * 1.6, 2)
-  limit_price = round(first_opening_price * 1.7, 2)
+  limit_price = round(first_opening_price * 1.6, 2)
 
   msg = EmailMessage()
   msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
                   "   \n" + "Your latest market price is " + str(latest_market_price) +
                   "   \n" + "Your price hike is " + str(price_hike) +
-                  "   \n" + "Your stop price is " + str(stop_price) +
-                  "   \n" + "Your limit price is " + str(limit_price))
-  msg['Subject'] = ticker + " price hike: " + str(roc) + "%"
+                  "   \n" + "Your sell limit price is " + str(limit_price))
+  msg['Subject'] = "[Vanguard(" + ticker + ")] price hike: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   

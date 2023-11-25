@@ -50,7 +50,7 @@ def send_email2(first_opening_price, latest_market_price, price_drop, roc, ticke
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = 'stct gxna upbz hofd'
+  password = "txpw qshd uhvk fdgu"
   
   stop_price = round(first_opening_price * 0.85, 2)
   limit_price = round(first_opening_price * 0.8, 2)
@@ -62,7 +62,7 @@ def send_email2(first_opening_price, latest_market_price, price_drop, roc, ticke
                   "   \n" + "Your stop price is " + str(stop_price) +
                   "   \n" + "Your limit price is " + str(limit_price))
 
-  msg['Subject'] = "[Uncovered(" + ticker + ")] price drop: " + str(roc) + "%"
+  msg['Subject'] = "[Uncovered Diamond(" + ticker + ")] price drop: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   
@@ -76,7 +76,7 @@ def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticke
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = 'stct gxna upbz hofd'
+  password = "txpw qshd uhvk fdgu"
   
   stop_price = round(first_opening_price * 1.6, 2)
   limit_price = round(first_opening_price * 1.7, 2)
