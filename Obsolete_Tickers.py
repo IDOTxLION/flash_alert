@@ -23,9 +23,6 @@ ticker_list = ['NNDM' ,'OPTT' ,'CLSK' ,'LTRX' ,'MARA' ,
                'EKSO','STXS','HUBC','KSCP','VSTM','INGN','AMSC','RMBL', 'ALIM','DTIL',]
                #'RWLK', 'ITI','MRAM','ISDR','EYPT','CASS','BWAY','DAIO','CYBN',
                #'DCTH','RELL','WATT','MCRB','SENS']
-#yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
-#data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
-#data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
 
 def data_dl():
   data = [
@@ -141,6 +138,7 @@ def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticke
                   "   \n" + "Your latest market price is " + str(latest_market_price) +
                   "   \n" + "Your price hike is " + str(price_hike) +
                   "   \n" + "Your sell limit price is " + str(limit_price))
+
   msg['Subject'] = "[Obsolete(" + ticker + ")] price hike: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email

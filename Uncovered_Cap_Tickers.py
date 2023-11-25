@@ -14,7 +14,7 @@ import yfinance as yf
 #Data viz
 import plotly.graph_objs as go
 
-ticker_list = ['NVDA', 'AAPL', 'MSFT','AMZN']
+ticker_list = ['NVDA', 'AAPL', 'MSFT','AMZN','AMD']
 
 def data_dl():
   data = [
@@ -22,6 +22,7 @@ def data_dl():
           yf.download(tickers = 'AAPL' ,period='1d', start='2023-10-04'), 
           yf.download(tickers = 'MSFT' ,period='1d', start='2023-11-02'), 
           yf.download(tickers = 'AMZN' ,period='1d', start='2023-11-03'), 
+          yf.download(tickers = 'AMD' ,period='1d', start='2023-11-03'), 
           ]
   return data
 
@@ -67,6 +68,7 @@ def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticke
                   "   \n" + "Your price hike is " + str(price_hike) +
                   "   \n" + "Your stop price is " + str(stop_price) +
                   "   \n" + "Your limit price is " + str(limit_price))
+  
   msg['Subject'] = "[Uncovered(" + ticker + ")] price hike: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
