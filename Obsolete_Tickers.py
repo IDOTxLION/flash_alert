@@ -118,7 +118,7 @@ def send_email2(first_opening_price, latest_market_price, price_drop, roc, ticke
                   "   \n" + "Your stop price is " + str(stop_price) +
                   "   \n" + "Your limit price is " + str(limit_price))
 
-  msg['Subject'] = "[Vanguard(" + ticker + ")] price drop: " + str(roc) + "%"
+  msg['Subject'] = "[Obsolete(" + ticker + ")] price drop: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   
@@ -141,7 +141,7 @@ def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticke
                   "   \n" + "Your latest market price is " + str(latest_market_price) +
                   "   \n" + "Your price hike is " + str(price_hike) +
                   "   \n" + "Your sell limit price is " + str(limit_price))
-  msg['Subject'] = "[Vanguard(" + ticker + ")] price hike: " + str(roc) + "%"
+  msg['Subject'] = "[Obsolete(" + ticker + ")] price hike: " + str(roc) + "%"
   msg['From'] = sender_email
   msg['To'] = receiver_email
   
