@@ -19,36 +19,44 @@ import yfinance as yf
 #Data viz
 import plotly.graph_objs as go
 
-crypto_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI','CRV','XRP']
+ticker_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI','CRV','XRP','WCFG']
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
 #data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
 
 def data_dl():
   data = [
-          yf.download(tickers = 'XLM-USD' ,period='1d', start='2023-01-12'),
+          yf.download(tickers = 'XLM-USD' ,period='1d', start='2023-01-13'),
           yf.download(tickers = 'MKR-USD' ,period='1d', start='2023-01-06'),
           yf.download(tickers = 'BAT-USD' ,period='1d', start='2023-01-26'),
           yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-02-02'),
-          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-07-31'),
-          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-11-12'),
+          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-01-12'),
+          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-01-12'),
           #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-11-12'),
-          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-11-12'),
+          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-01-12'),
+          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-01-12'),
+        
+        
+          
+          
           ]
   return data
 
 
     
-def send_email2(first_closing_price, latest_closing_price, price_drop, crypto):
+def send_email2(first_closing_price, price_drop, crypto):
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = "abbmir@gmail.com"  # Enter receiver address
-  password = "epfb ajgv pzgw rlle"
+  #password = 'stct gxna upbz hofd'
+  password = "txpw qshd uhvk fdgu"
   
+  stop_price = round(first_opening_price * 0.85, 2)
+  limit_price = round(first_opening_price * 0.8, 2)
+
   msg = EmailMessage()
-  msg.set_content("Hi \n" + "Your first closing price was " + str(first_closing_price) + ' to '+ str(latest_closing_price))
+  msg.set_content("Hi \n" + "Your first closing price was " + str(first_closing_price))
   msg['Subject'] = crypto + " price drop: " + str(price_drop)
   msg['From'] = sender_email
   msg['To'] = receiver_email
@@ -58,19 +66,29 @@ def send_email2(first_closing_price, latest_closing_price, price_drop, crypto):
       server.login(sender_email, password)
       server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
+def send_email3(first_opening_price, latest_market_price, price_hike, roc, ticker):
+  port = 465  # For SSL
+  smtp_server = "smtp.gmail.com"
+  sender_email = "aaleensyed20@gmail.com"  # Enter your address
+  receiver_email = "abbmir@gmail.com"  # Enter receiver address
+  password = "txpw qshd uhvk fdgu"
+  
+  limit_price = round(first_opening_price * 1.6, 2)
 
-# n=0
-# for line in data:
-#     print(ticker_list[n],line)
-#     n+=1
+  msg = EmailMessage()
+  msg.set_content("Hi \n" + "Your first opening price was " + str(first_opening_price) +
+                  "   \n" + "Your latest market price is " + str(latest_market_price) +
+                  "   \n" + "Your price hike is " + str(price_hike) +
+                  "   \n" + "Your sell limit price is " + str(limit_price))
+  msg['Subject'] = "[Crypto(" + ticker + ")] price hike: " + str(roc) + "%"
+  msg['From'] = sender_email
+  msg['To'] = receiver_email
+  
+  context = ssl.create_default_context()
+  with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+      server.login(sender_email, password)
+      server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
 
-
-#fig = go.Figure(data = go.Candlestick(x = data[0].index, open = data[0]['Open'], high=data[0], low=data[0], close=data[0], name = 'market data'))
-# fig = go.Figure()
-# fig.add_trace(go.Candlestick(x = data[0].index, open = data[0]['Open'], high=data[0]['High'], low=data[0]['Low'], close=data[0]['Close'], name = 'HGEN' ))
-# fig.add_traces(go.Candlestick(x = data[1].index, open = data[1]['Open'], high=data[1]['High'], low=data[1]['Low'], close=data[1]['Close'], name = 'INGN'))
-# fig.add_traces(go.Candlestick(x = data[2].index, open = data[2]['Open'], high=data[2]['High'], low=data[2]['Low'], close=data[2]['Close'], name = 'VSTM'))
-# fig.add_traces(go.Candlestick(x = data[3].index, open = data[3]['Open'], high=data[3]['High'], low=data[3]['Low'], close=data[3]['Close'], name = 'KSCP'))
 # fig.add_traces(go.Candlestick(x = data[4].index, open = data[4]['Open'], high=data[4]['High'], low=data[4]['Low'], close=data[4]['Close'], name = 'VSTM'))
 
 # fig.show()
@@ -81,16 +99,19 @@ fig = go.Figure()
 
 def main():
   data = data_dl()
-  for line, crypto in zip(data,crypto_list):
+  for line, ticker in zip(data,ticker_list):
        # starting_price = line['Close'][0]  
         #ending_price = line['Close'][-1]   
-    
+
+        #for o in line['Open']:
+        #   print (str(o) + " for " + ticker)
+
         #if ending_price < starting_price:
         first_closing_price = line['Close'][0]
         latest_closing_price = line['Close'][-1]
         if(latest_closing_price < first_closing_price*0.8):
            price_drop = first_closing_price - latest_closing_price
-           send_email2( first_closing_price,latest_closing_price,price_drop, crypto)
+           send_email2( first_closing_price,price_drop, crypto)
 
 
            
