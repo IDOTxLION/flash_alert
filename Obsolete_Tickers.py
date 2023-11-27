@@ -164,6 +164,7 @@ def plot_graph_hike():
      limit_price = round(first_opening_price * 1.6, 2)
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc > 0:
+        print ( "[Obsolete( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
         fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker))
         fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
   
@@ -220,6 +221,7 @@ def Hike():
 
         #if latest_market_price < first_opening_price * 0.8:
         if roc > 0:
+            print ( "[Obsolete( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
             content += ("<p style = 'font-size: 25px;'>[Obsolete( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
