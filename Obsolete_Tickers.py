@@ -196,7 +196,7 @@ def Drop():
         if roc < 0:
             price_drop = round(first_opening_price - latest_market_price,2)
             print ( "[Obsolete( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
-            content += ( "[Obsolete( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
+            content += ( "<p style = 'font-size: 25px;'>[Obsolete( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"   Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"   Your price drop is " + str(price_drop) +
@@ -220,7 +220,7 @@ def Hike():
         #if latest_market_price < first_opening_price * 0.8:
         if roc > 0:
             price_hike = round(latest_market_price - first_opening_price,2)
-            content += ("[Obsolete( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
+            content += ("<p style = 'font-size: 25px;'>[Obsolete( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
                   "   <br>"+t+t+" Your sell limit price is " + str(limit_price) +
