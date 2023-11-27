@@ -2,6 +2,8 @@ from pprint import pprint
 import smtplib, ssl
 import sys, re, logging
 from email.message import EmailMessage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 
@@ -30,7 +32,7 @@ class color:
    BOLD = '\033[1m'
    UNDERLINE = '\033[4m'
    END = '\033[0m'
-
+t = "    "
 ticker_list = ['NNDM' ,'OPTT' ,'CLSK' ,'LTRX' ,'MARA' ,
                'PXLW' ,'VYNT' ,
                'MOSYX' , 'TRT' ,'GMDA' ,'SCYX' ,
@@ -111,7 +113,7 @@ def data_dl():
           ]
   return data
 
-def all_tickers():
+def plot_graphe():
   fig = go.Figure() 
   data = data_dl()
   for line, ticker in zip(data,ticker_list):
@@ -126,7 +128,7 @@ def all_tickers():
                     height=800   
                     )
   
-  return fig
+  fig.show()
 
 
 def Drop():
@@ -146,11 +148,11 @@ def Drop():
             price_drop = round(first_opening_price - latest_market_price,2)
             print ( "[Obsolete( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
             content += ( "[Obsolete( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
-                  "   \n\t\t   Your first opening price was " + str(first_opening_price) +
-                  "   \n\t\t   Your latest market price is " + str(latest_market_price) +
-                  "   \n\t\t   Your price drop is " + str(price_drop) +
-                  "   \n\t\t   Your sell limit price is " + str(limit_price)+
-                  "\n"
+                  "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
+                  "   <br>"+t+t+"   Your latest market price is " + str(latest_market_price) +
+                  "   <br>"+t+t+"   Your price drop is " + str(price_drop) +
+                  "   <br>"+t+t+"   Your sell limit price is " + str(limit_price)+
+                  "<br>"
                   )
     return content  
 
@@ -169,12 +171,11 @@ def Hike():
         #if latest_market_price < first_opening_price * 0.8:
         if roc > 0:
             price_hike = round(latest_market_price - first_opening_price,2)
-            content += ("[Obsolete("+ ticker + ")] price hike: " + str(roc) + "%" + 
-                  "   \n\t\t  Your first opening price was " + str(first_opening_price) +
-                  "   \n\t\t  Your latest market price is " + str(latest_market_price) +
-                  "   \n\t\t  Your price hike is " + str(price_hike) +
-                  "   \n\t\t  Your sell limit price is " + str(limit_price) +
-                  "\n")
+            content += ("[Obsolete( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
+                  "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
+                  "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
+                  "   <br>"+t+t+" Your sell limit price is " + str(limit_price) +
+                  "<br>")
     return content   
     
 '''     
@@ -258,20 +259,21 @@ def send_email(email):
   receiver_email = email  # Enter receiver address
   password = "omaq zcyi swbg nwhd"
   
-  msg = EmailMessage()
+  msg = MIMEMultipart()
   msg['Subject'] = "[Obsolete(tickers)]"
   msg['From'] = sender_email
   msg['To'] = receiver_email
 
-  content = "List of Tickers:\n"
-  content += Hike()
+  content = ""
+  content += Hike() + "<br>"
   
   content += Drop()
   
 
-  msg.set_content(content)
-  
+   
+  msg.attach(MIMEText(content, 'html'))
   context = ssl.create_default_context()
+
   with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
       server.login(sender_email, password)
       server.send_message(msg, from_addr=sender_email, to_addrs=receiver_email)
@@ -291,8 +293,13 @@ def main():
       logger.error("Unknown command line argument \"{}\"".format(o))
       parser.print_help()
       sys.exit(1)
+  if args.plot:
+     plot_graphe()
+  elif args.email:
+     send_email(args.email)
+     
 
-  send_email(args.email)
+  
   #!<for line, ticker in zip(data,ticker_list):
   #!<     # starting_price = line['Close'][0]  
   #!<      #ending_price = line['Close'][-1]   
