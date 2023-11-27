@@ -112,15 +112,15 @@ def data_dl():
           #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),
           ]
   return data
-
-def plot_graphe():
+def plot_graph():
   fig = go.Figure() 
   data = data_dl()
-  for line, ticker in zip(data,ticker_list):
-    fig.add_trace(go.Candlestick(x = line.index, open = line['Open'], high=line['High'], low=line['Low'], close=line['Close'], name = ticker ))
+  
+  for value, ticker in zip(data,ticker_list):
+     fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker ))
   
   
-  fig.update_layout(title="Candlestick Chart for Multiple Stocks",
+  fig.update_layout(title="Candlestick Chart for drop Multiple Stocks",
                     xaxis_title="Date",
                     yaxis_title="Stock Price",
                     xaxis_rangeslider_visible=True,
@@ -129,6 +129,55 @@ def plot_graphe():
                     )
   
   fig.show()
+def plot_graph_drop():
+  fig = go.Figure() 
+  data = data_dl()
+  
+  for value, ticker in zip(data,ticker_list):
+     first_opening_price = round(value['Open'][0],2)
+     latest_market_price = round(value['Close'][-1],2)
+     stop_price = round(first_opening_price * 0.85, 2)
+     limit_price = round(first_opening_price * 0.8, 2)
+     roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
+     if roc < 0:
+        fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker ))
+        fig.add_trace(go.Scatter(x=value.index ,y=[stop_price,limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
+  
+  
+  fig.update_layout(title="Candlestick Chart for drop Multiple Stocks",
+                    xaxis_title="Date",
+                    yaxis_title="Stock Price",
+                    xaxis_rangeslider_visible=True,
+                    width=1500,  
+                    height=800   
+                    )
+  
+  fig.show()
+
+def plot_graph_hike():
+  fig = go.Figure() 
+  data = data_dl()
+  
+  for value, ticker in zip(data,ticker_list):
+     first_opening_price = round(value['Open'][0],2)
+     latest_market_price = round(value['Close'][-1],2)
+     limit_price = round(first_opening_price * 1.6, 2)
+     roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
+     if roc > 0:
+        fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker))
+        fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
+  
+  
+  fig.update_layout(title="Candlestick Chart for hike Multiple Stocks",
+                    xaxis_title="Date",
+                    yaxis_title="Stock Price",
+                    xaxis_rangeslider_visible=True,
+                    width=1500,  
+                    height=800   
+                    )
+  
+  fig.show()
+  
 
 
 def Drop():
@@ -284,6 +333,9 @@ def main():
   #parser.add_argument("flow",metavar="FLOW",help="Required. Specify desired flow. Use --list_flows to see available flows",default="UNSPECIFIED",nargs="?")
   parser.add_argument("--email","-e",help="Specify your e-mail address", default=None)
   parser.add_argument("--plot","-p",help="Plot tickers on browser",action='store_true',default=False)
+  parser.add_argument("--plot_drop","-pd",help="Plot tickers of drop on browser",action='store_true',default=False)
+  parser.add_argument("--plot_hike","-ph",help="Plot tickers of hike on browser",action='store_true',default=False)
+
   args,option_overrides = parser.parse_known_args()
   logger = logging.getLogger("logger")
   # Check the option overrides array for any unknown arguments. Anything starting with a dash (-) is an unknown switch, not 
@@ -294,7 +346,11 @@ def main():
       parser.print_help()
       sys.exit(1)
   if args.plot:
-     plot_graphe()
+     plot_graph()
+  elif args.plot_drop:
+     plot_graph_drop()
+  elif args.plot_hike:
+     plot_graph_hike()
   elif args.email:
      send_email(args.email)
      
