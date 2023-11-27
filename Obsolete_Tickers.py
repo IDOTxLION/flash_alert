@@ -225,8 +225,9 @@ def Hike():
             price_hike = round(latest_market_price - first_opening_price,2)
             content += ("<p style = 'font-size: 25px;'>[Obsolete( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
+                  "   <br>"+t+t+"  Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
-                  "   <br>"+t+t+" Your limit price is " + str(limit_price) +
+                  "   <br>"+t+t+"  Your limit price is " + str(limit_price) +
                   "<br>")
     return content   
     
