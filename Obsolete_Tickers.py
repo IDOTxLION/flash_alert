@@ -141,8 +141,8 @@ def plot_graph_drop():
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc < 0:
         fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker ))
-        fig.add_trace(go.Scatter(x=value.index ,y=[stop_price,limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
-  
+        fig.add_trace(go.Scatter(x=value.index ,y=[stop_price], mode='markers', marker=dict(size=10), name='stop_price'))
+        fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
   
   fig.update_layout(title="Candlestick Chart for drop Multiple Stocks",
                     xaxis_title="Date",
@@ -200,7 +200,8 @@ def Drop():
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"   Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"   Your price drop is " + str(price_drop) +
-                  "   <br>"+t+t+"   Your sell limit price is " + str(limit_price)+
+                  "   <br>"+t+t+"   Your stop price is " + str(stop_price)+
+                  "   <br>"+t+t+"   Your limit price is " + str(limit_price)+
                   "<br>"
                   )
     return content  
@@ -223,7 +224,7 @@ def Hike():
             content += ("<p style = 'font-size: 25px;'>[Obsolete( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
-                  "   <br>"+t+t+" Your sell limit price is " + str(limit_price) +
+                  "   <br>"+t+t+" Your limit price is " + str(limit_price) +
                   "<br>")
     return content   
     
