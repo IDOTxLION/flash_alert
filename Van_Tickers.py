@@ -176,6 +176,12 @@ def Hike():
 
 # fig.show()
 
+def RightNow():
+    import datetime
+    #current_time = datetime.datetime.now().strftime('%H:%M:%S')
+    current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+    return current_time
+
 def send_email(email):  
   port = 465  # For SSL
   smtp_server = "smtp.gmail.com"
@@ -184,7 +190,7 @@ def send_email(email):
   password = "omaq zcyi swbg nwhd"
   
   msg = MIMEMultipart()
-  msg['Subject'] = "[Vanguard(tickers)]"
+  msg['Subject'] = "[Vanguard(tickers)] " + RightNow() 
   msg['From'] = sender_email
   msg['To'] = receiver_email
 
