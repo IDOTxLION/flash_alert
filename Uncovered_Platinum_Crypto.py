@@ -34,19 +34,36 @@ class color:
    END = '\033[0m'
 t = "    "
 
+ticker_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI','XRP','WCFG',
+               'AAVE', 'ANKR', 'ANT', 
+               'CRV','SPELL'
+             ]
+#yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
+#data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
+#data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
 
-ticker_list = ['DCTH', 'RELL', 'WATT',
-               #'MCRB',
-               'SENS','OTLY']
 
 def data_dl():
   data = [
-          yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
-          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'), 
-          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'), 
-          #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), 
-          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'), 
-          yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'), 
+          yf.download(tickers = 'XLM-USD' ,period='1d', start='2023-01-13'),
+          yf.download(tickers = 'MKR-USD' ,period='1d', start='2023-01-06'),
+          yf.download(tickers = 'BAT-USD' ,period='1d', start='2023-01-26'),
+          yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-02-02'),
+          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-07-31'),
+          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-11-01'),
+          #yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-11-08'), # Diamond
+          #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-11-09'),
+          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-11-13'),
+          yf.download(tickers = 'WCFG-USD' ,period='1d', start='2023-11-21'),
+          yf.download(tickers = 'AAVE-USD' ,period='1d', start='2023-11-29'),
+          yf.download(tickers = 'ANKR-USD' ,period='1d', start='2023-11-29'),
+          yf.download(tickers = 'ANT-USD' ,period='1d', start='2023-11-29'),
+          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-12-01'),
+          yf.download(tickers = 'SPELL-USD' ,period='1d', start='2023-12-01'),
+        
+        
+          
+          
           ]
   return data
 def plot_graph():
@@ -101,7 +118,7 @@ def plot_graph_hike():
      limit_price = round(first_opening_price * 1.6, 2)
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc > 0:
-        print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
+        print ( "[Crypto( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
         fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker))
         fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
   
@@ -133,8 +150,8 @@ def Drop():
         #if latest_market_price < first_opening_price * 0.8:
         if roc < 0:
             price_drop = round(first_opening_price - latest_market_price,2)
-            print ( "[Uncovered Diamond ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
-            content += ( "<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
+            print ( "[Crypto ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
+            content += ( "<p style = 'font-size: 25px;'>[Crypto( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"   Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"   Your price drop is " + str(price_drop) +
@@ -158,9 +175,9 @@ def Hike():
 
         #if latest_market_price < first_opening_price * 0.8:
         if roc > 0:
-            print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
+            print ( "[Crypto( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
-            content += ("<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
+            content += ("<p style = 'font-size: 25px;'>[Crypto( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"  Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
@@ -187,7 +204,7 @@ def send_email(email):
   password = "omaq zcyi swbg nwhd"
   
   msg = MIMEMultipart()
-  msg['Subject'] = "[Uncovered Diamond(tickers)] " + RightNow()
+  msg['Subject'] = "[Uncovered Platinum(Crypto)] " + RightNow()
   msg['From'] = sender_email
   msg['To'] = receiver_email
 

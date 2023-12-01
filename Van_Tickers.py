@@ -37,6 +37,7 @@ t = "    "
 
 ticker_list = ['RWLK', 'ITI', 'MRAM','ISDR','EYPT','CASS','BWAY','DAIO','CYBN',
                #'DCTH', 'RELL', 'WATT','MCRB','SENS'
+              'MCRB'
               ]
 
 def data_dl():
@@ -50,6 +51,7 @@ def data_dl():
           yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), 
           yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), 
           yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'), 
+          yf.download(tickers = 'MCRB' ,period='1d', start='2023-12-01'), 
           ]
   return data
 def plot_graph():
