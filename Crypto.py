@@ -34,7 +34,9 @@ class color:
    END = '\033[0m'
 t = "    "
 
-ticker_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI','CRV','XRP','WCFG']
+ticker_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI','CRV','XRP','WCFG',
+               'AAVE', 'ANKR', 'ANT'
+             ]
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
 #data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
@@ -46,11 +48,15 @@ def data_dl():
           yf.download(tickers = 'MKR-USD' ,period='1d', start='2023-01-06'),
           yf.download(tickers = 'BAT-USD' ,period='1d', start='2023-01-26'),
           yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-02-02'),
-          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-01-12'),
-          #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-01-12'),
-          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-01-12'),
+          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-07-31'),
+          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-11-01'),
+          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-11-08'),
+          #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-11-09'),
+          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-11-13'),
+          yf.download(tickers = 'WCFG-USD' ,period='1d', start='2023-11-21'),
+          yf.download(tickers = 'AAVE-USD' ,period='1d', start='2023-11-29'),
+          yf.download(tickers = 'ANKR-USD' ,period='1d', start='2023-11-29'),
+          yf.download(tickers = 'ANT-USD' ,period='1d', start='2023-11-29'),
         
         
           

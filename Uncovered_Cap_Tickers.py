@@ -35,15 +35,16 @@ class color:
 t = "    "
 
 
-ticker_list = ['NVDA', 'AAPL', 'MSFT','AMZN','AMD']
+ticker_list = ['NVDA', 'AAPL', 'MSFT','AMZN','AMD','QCOM']
 
 def data_dl():
   data = [
           yf.download(tickers = 'NVDA' ,period='1d', start='2023-09-25'),          
-          yf.download(tickers = 'AAPL' ,period='1d', start='2023-10-04'), 
-          yf.download(tickers = 'MSFT' ,period='1d', start='2023-11-02'), 
-          yf.download(tickers = 'AMZN' ,period='1d', start='2023-11-03'), 
-          yf.download(tickers = 'AMD' ,period='1d', start='2023-11-03'), 
+          yf.download(tickers = 'AAPL' ,period='1d', start='2023-09-25'), 
+          yf.download(tickers = 'MSFT' ,period='1d', start='2023-09-25'), 
+          yf.download(tickers = 'AMZN' ,period='1d', start='2023-09-25'), 
+          yf.download(tickers = 'AMD' ,period='1d', start='2023-09-25'), 
+          yf.download(tickers = 'QCOM' ,period='1d', start='2023-09-25'), 
           ]
   return data
 def plot_graph():
