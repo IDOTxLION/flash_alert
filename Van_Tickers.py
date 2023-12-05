@@ -35,23 +35,32 @@ class color:
 t = "    "
 
 
-ticker_list = ['RWLK', 'ITI', 'MRAM','ISDR','EYPT','CASS','BWAY','DAIO','CYBN',
-               #'DCTH', 'RELL', 'WATT','MCRB','SENS'
-              'MCRB'
+ticker_list = [
+               #'RWLK', 
+               'ITI', 'MRAM','ISDR',
+               #'EYPT',
+               'CASS',
+               #'BWAY',
+               #'DAIO',
+               'CYBN','MCRB','RMBL', 'INGN','GMDA'
               ]
 
 def data_dl():
   data = [
-          yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
+          #yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
           yf.download(tickers = 'ITI'  ,period='1d', start='2023-10-23'), 
           yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'), 
           yf.download(tickers = 'ISDR' ,period='1d', start='2023-09-20'), 
-          yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'), 
+          #yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'),  #sold on 11/27 at $5.90
           yf.download(tickers = 'CASS' ,period='1d', start='2023-10-03'), 
-          yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), 
-          yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), 
+          #yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), #sold on 11/20 at $4.87
+          #yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
+          #                                                                #placed on 12/4 at $2.88 
           yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'), 
           yf.download(tickers = 'MCRB' ,period='1d', start='2023-12-01'), 
+          yf.download(tickers = 'RMBL' ,period='1d', start='2023-12-04'),  #$10.58, $5.67
+          yf.download(tickers = 'INGN' ,period='1d', start='2023-12-05'),  #$10.30, $5.00
+          yf.download(tickers = 'GMDA' ,period='1d', start='2023-12-05'),  #$3.30, $0.32
           ]
   return data
 def plot_graph():
@@ -189,7 +198,7 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "omaq zcyi swbg nwhd"
+  password = "iuts jpmy emri webd"
   
   msg = MIMEMultipart()
   msg['Subject'] = "[Vanguard(tickers)] " + RightNow() 

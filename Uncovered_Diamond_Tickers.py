@@ -35,18 +35,35 @@ class color:
 t = "    "
 
 
-ticker_list = ['DCTH', 'RELL', 'WATT',
+ticker_list = [ 
+               #'GMDA',
+               'HUBC',
+               #'INGN','RMBL',
+               'EYPT',
+               'DCTH',
+               'BWAY', 
+               'RELL',
+               'DAIO', 
+               'WATT',
                #'MCRB',
                'SENS','OTLY']
 
 def data_dl():
   data = [
-          yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),          
-          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'), 
-          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'), 
-          #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), 
-          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'), 
-          yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'), 
+          #yf.download(tickers = 'GMDA' ,period='1d', start='2022-03-01'),  #$3.30, $0.32
+          yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
+          #yf.download(tickers = 'INGN' ,period='1d', start='2023-06-27'),  #$10.30, $5.00
+          #yf.download(tickers = 'RMBL' ,period='1d', start='2023-08-01'),  #$10.58, $5.67
+          yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'),  #sold on 11/27 at $5.90
+          yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),  #$3.87, $2.61        
+          yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), #sold on 11/20 at $4.87
+          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),  #$9.84, $10.84
+          yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
+                                                                          #placed on 12/4 at $2.88 
+          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'),  #$1.84
+          #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
+          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.57
+          yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.00
           ]
   return data
 def plot_graph():
@@ -184,8 +201,8 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "omaq zcyi swbg nwhd"
-  
+  password = "iuts jpmy emri webd"
+
   msg = MIMEMultipart()
   msg['Subject'] = "[Uncovered Diamond(tickers)] " + RightNow()
   msg['From'] = sender_email
