@@ -34,9 +34,8 @@ class color:
    END = '\033[0m'
 t = "    "
 
-ticker_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI','XRP','WCFG',
-               'AAVE', 'ANKR', 'ANT', 
-               'CRV','SPELL'
+ticker_list = ['XLM','MKR','BAT','XTZ','DOGE','UNI',
+               'XRP','WCFG','AAVE', 'ANKR', 'ANT', 'CRV','SPELL', 'COMP'
              ]
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
@@ -60,6 +59,7 @@ def data_dl():
           yf.download(tickers = 'ANT-USD' ,period='1d', start='2023-11-29'),
           yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-12-01'),
           yf.download(tickers = 'SPELL-USD' ,period='1d', start='2023-12-01'),
+          yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-12-05'), #Diamond $47.84
         
         
           
