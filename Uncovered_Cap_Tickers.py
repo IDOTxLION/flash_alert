@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 ##!<import pandas as pd
 ##!<import matplotlib.pyplot as plt
-##!<from datetime import datetime
+from datetime import datetime
 
 # Raw Package
 import numpy as np
@@ -39,12 +39,12 @@ ticker_list = ['NVDA', 'AAPL', 'MSFT','AMZN','AMD','QCOM']
 
 def data_dl():
   data = [
-          yf.download(tickers = 'NVDA' ,period='1d', start='2023-09-25'),          
-          yf.download(tickers = 'AAPL' ,period='1d', start='2023-09-25'), 
-          yf.download(tickers = 'MSFT' ,period='1d', start='2023-09-25'), 
-          yf.download(tickers = 'AMZN' ,period='1d', start='2023-09-25'), 
-          yf.download(tickers = 'AMD' ,period='1d', start='2023-09-25'), 
-          yf.download(tickers = 'QCOM' ,period='1d', start='2023-09-25'), 
+          yf.download(tickers = 'NVDA' ,period='1d', interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),          
+          yf.download(tickers = 'AAPL' ,period='1d', interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)), 
+          yf.download(tickers = 'MSFT' ,period='1d', interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)), 
+          yf.download(tickers = 'AMZN' ,period='1d', interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)), 
+          yf.download(tickers = 'AMD' ,period='1d', interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)), 
+          yf.download(tickers = 'QCOM' ,period='1d', interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)), 
           ]
   return data
 def plot_graph():
@@ -147,7 +147,9 @@ def Hike():
     for ticker, value in zip(ticker_list, data_dl()):
         first_opening_price = round(value['Open'][0],2)
         latest_market_price = round(value['Close'][-1],2)
-
+        
+        #if 'ISDR' in ticker:
+        print(ticker, value)
         
         limit_price = round(first_opening_price * 1.6, 2)
 
@@ -155,7 +157,7 @@ def Hike():
         roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);    
 
         #if latest_market_price < first_opening_price * 0.8:
-        if roc > 0:
+        if roc >= 0:
             print ( "[Uncovered Cap( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
             content += ("<p style = 'font-size: 25px;'>[Uncovered Cap( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 

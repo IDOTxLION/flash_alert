@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 ##!<import pandas as pd
 ##!<import matplotlib.pyplot as plt
-##!<from datetime import datetime
+from datetime import datetime
 
 # Raw Package
 import numpy as np
@@ -36,34 +36,32 @@ t = "    "
 
 
 ticker_list = [ 
-               #'GMDA',
-               'HUBC',
-               #'INGN','RMBL',
+               #'GMDA','HUBC','INGN','RMBL',
                'EYPT',
                'DCTH',
                'BWAY', 
                'RELL',
                'DAIO', 
                'WATT',
-               #'MCRB',
-               'SENS','OTLY']
+               #'MCRB','SENS','OTLY'
+               ]
 
 def data_dl():
   data = [
           #yf.download(tickers = 'GMDA' ,period='1d', start='2022-03-01'),  #$3.30, $0.32
-          yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
+          #yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
           #yf.download(tickers = 'INGN' ,period='1d', start='2023-06-27'),  #$10.30, $5.00
           #yf.download(tickers = 'RMBL' ,period='1d', start='2023-08-01'),  #$10.58, $5.67
-          yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'),  #sold on 11/27 at $5.90
-          yf.download(tickers = 'DCTH' ,period='1d', start='2023-09-25'),  #$3.87, $2.61        
-          yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), #sold on 11/20 at $4.87
-          yf.download(tickers = 'RELL' ,period='1d', start='2023-10-04'),  #$9.84, $10.84
-          yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
+          yf.download(tickers = 'EYPT' ,period='1d',  interval='1h', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
+          yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
+          yf.download(tickers = 'BWAY' ,period='1d',  interval='1h', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
+          yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
+          yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
                                                                           #placed on 12/4 at $2.88 
-          yf.download(tickers = 'WATT' ,period='1d', start='2023-11-02'),  #$1.84
+          yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
           #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
-          yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.57
-          yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.00
+          #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
+          #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
           ]
   return data
 def plot_graph():
@@ -166,7 +164,8 @@ def Hike():
     for ticker, value in zip(ticker_list, data_dl()):
         first_opening_price = round(value['Open'][0],2)
         latest_market_price = round(value['Close'][-1],2)
-
+        
+        print(ticker,value)
         
         limit_price = round(first_opening_price * 1.6, 2)
 

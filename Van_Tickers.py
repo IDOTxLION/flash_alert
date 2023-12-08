@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 ##!<import pandas as pd
 ##!<import matplotlib.pyplot as plt
-##!<from datetime import datetime
+from datetime import datetime
 
 # Raw Package
 import numpy as np
@@ -36,31 +36,34 @@ t = "    "
 
 
 ticker_list = [
-               #'RWLK', 
-               'ITI', 'MRAM','ISDR',
                #'EYPT',
-               'CASS',
-               #'BWAY',
-               #'DAIO',
-               'CYBN','MCRB','RMBL', 'INGN','GMDA'
+               'ISDR',
+               #'RWLK', 
+               'MRAM','CASS',
+               #'BWAY','DAIO',
+               'ITI','CYBN','MCRB','RMBL','INGN','GMDA','HUBC','OTLY', 'SENS',
               ]
 
 def data_dl():
   data = [
-          #yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
-          yf.download(tickers = 'ITI'  ,period='1d', start='2023-10-23'), 
-          yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'), 
-          yf.download(tickers = 'ISDR' ,period='1d', start='2023-09-20'), 
+          # Note: Check the analyst price before selling 
           #yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'),  #sold on 11/27 at $5.90
-          yf.download(tickers = 'CASS' ,period='1d', start='2023-10-03'), 
+          yf.download(tickers = 'ISDR' ,period='1d', interval='1h', start=datetime(2023, 9, 20, 15, 30, 0)),  #$19.32, $19.32
+          #yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
+          yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'),  #$9.20, $9.15
+          yf.download(tickers = 'CASS' ,period='1d', interval='1h', start=datetime(2023, 10, 2, 11, 30, 0)),  #$34.04, $36.52
           #yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), #sold on 11/20 at $4.87
           #yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
           #                                                                #placed on 12/4 at $2.88 
-          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'), 
-          yf.download(tickers = 'MCRB' ,period='1d', start='2023-12-01'), 
-          yf.download(tickers = 'RMBL' ,period='1d', start='2023-12-04'),  #$10.58, $5.67
-          yf.download(tickers = 'INGN' ,period='1d', start='2023-12-05'),  #$10.30, $5.00
-          yf.download(tickers = 'GMDA' ,period='1d', start='2023-12-05'),  #$3.30, $0.32
+          yf.download(tickers = 'ITI'  ,period='1d', interval='1h', start=datetime(2023, 10, 23, 11, 30, 0)),  #$4.05, $4.05
+          yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'),  #$0.64, $0.44
+          yf.download(tickers = 'MCRB' ,period='1d', interval='1m', start=datetime(2023, 12, 1, 9, 32, 0)),  #$1.24, $0.99 
+          yf.download(tickers = 'RMBL' ,period='1d', interval='1m', start=datetime(2023, 12, 4, 15, 35, 0)),  #$10.58, $5.67
+          yf.download(tickers = 'INGN' ,period='1d', interval='1m', start=datetime(2023, 12, 5, 14, 44, 0)),  #$10.30, $5.00
+          yf.download(tickers = 'GMDA' ,period='1d', interval='1m', start=datetime(2023, 12, 5, 14, 44, 0)),  #$3.30, $0.32
+          yf.download(tickers = 'HUBC' ,period='1d', interval='1m', start=datetime(2023, 12, 6, 14, 44, 0)),  #$2.39, $0.25
+          yf.download(tickers = 'OTLY' ,period='1d', interval='1m', start=datetime(2023, 12, 6, 12, 44, 0)),  #$0.87, $1.24
+          yf.download(tickers = 'SENS' ,period='1d', interval='1m', start=datetime(2023, 12, 6, 14, 33, 0)),  #$0.52, $0.63
           ]
   return data
 def plot_graph():
@@ -163,7 +166,9 @@ def Hike():
     for ticker, value in zip(ticker_list, data_dl()):
         first_opening_price = round(value['Open'][0],2)
         latest_market_price = round(value['Close'][-1],2)
-
+        
+        #if 'ISDR' in ticker:
+        print(ticker, value)
         
         limit_price = round(first_opening_price * 1.6, 2)
 
@@ -171,7 +176,7 @@ def Hike():
         roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);    
 
         #if latest_market_price < first_opening_price * 0.8:
-        if roc > 0:
+        if roc >= 0:
             print ( "[Vanguard( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
             content += ("<p style = 'font-size: 25px;'>[Vanguard( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
