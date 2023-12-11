@@ -140,17 +140,31 @@ def plot_graph_drop():
      limit_price = round(first_opening_price * 0.8, 2)
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc < 0:
-        fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker ))
-        fig.add_trace(go.Scatter(x=value.index ,y=[stop_price], mode='markers', marker=dict(size=10), name='stop_price'))
-        fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
+        fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker,legendgroup=ticker ))
+        fig.add_trace(go.Scatter(x=[value.index[0],value.index[-1]], y=[limit_price,limit_price],marker=dict(size=1) ,line=dict(color='rgba(0, 0, 255, 0.5)',width=1), name=ticker+' limit_price', legendgroup=ticker))
+        #fig.add_trace(go.Scatter(x=[value.index[0],value.index[-1]], y=[limit_price,limit_price],mode='markers',marker=dict(size=3,color='blue') , name=ticker+' limit_price',visible=True, legendgroup=ticker))
+        #fig.add_trace(go.Scatter(x=[value.index[0],value.index[-1]], y=[limit_price,limit_price],mode='lines' ,line=dict(color='rgba(0, 0, 255, 0.3)',width=3),name=ticker+' limit_price',visible=False,legendgroup=ticker))
+        fig.add_trace(go.Scatter(x=[value.index[0],value.index[-1]] ,y=[stop_price,stop_price],marker=dict(size=1), line=dict(color='rgba(0, 0,0, 0.3)',width=1), name=ticker+' stop_price',visible=True,legendgroup=ticker))
   
-  fig.update_layout(title="Candlestick Chart for drop Multiple Stocks",
-                    xaxis_title="Date",
-                    yaxis_title="Stock Price",
-                    xaxis_rangeslider_visible=True,
-                    width=1500,  
-                    height=800   
-                    )
+  fig.update_layout(
+    #  updatemenus=[dict(buttons=list([
+    #             dict(label="Toggle Limit Price Line",
+    #                  method="update",
+    #                  args=[{"visible": [True if 'limit_price' in trace.name else False for trace in fig.data]}]),
+    #         ]),
+    #         direction="down",
+    #         showactive=True,
+    #         x=0.1,
+    #         xanchor="left",
+    #         y=1.15,
+    #         yanchor="top"),],
+    title="Candlestick Chart for drop Multiple Stocks",
+    xaxis_title="Date",
+    yaxis_title="Stock Price",
+    xaxis_rangeslider_visible=True,
+    width=1500,
+    height=800
+)
   
   fig.show()
 
@@ -164,17 +178,17 @@ def plot_graph_hike():
      limit_price = round(first_opening_price * 1.6, 2)
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc > 0:
-        print ( "[Obsolete( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
-        fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker))
-        fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
-  
+        fig.add_trace(go.Candlestick(x=value.index, open=value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name=ticker,legendgroup=ticker))
+        fig.add_trace(go.Scatter(x=[value.index[0],value.index[-1]], y=[limit_price,limit_price],marker=dict(size=1) ,line=dict(color='rgba(0, 0, 255, 0.3)',width=1), name=ticker+' limit_price', legendgroup=ticker))
+        #fig.add_shape(type="line", x0=value.index[0], y0=limit_price, x1=value.index[-1], y1=limit_price, line=dict(color="blue", width=1), name='Stop Price',legendgroup=ticker)
   
   fig.update_layout(title="Candlestick Chart for hike Multiple Stocks",
                     xaxis_title="Date",
                     yaxis_title="Stock Price",
                     xaxis_rangeslider_visible=True,
                     width=1500,  
-                    height=800   
+                    height=800,
+                      
                     )
   
   fig.show()
@@ -316,7 +330,7 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "iuts jpmy emri webd"
+  password = "sktl hgmd hsit zsot"
   
   msg = MIMEMultipart()
   msg['Subject'] = "[Obsolete(tickers)] " + RightNow()
