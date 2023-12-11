@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 ##!<import pandas as pd
 ##!<import matplotlib.pyplot as plt
-##!<from datetime import datetime
+from datetime import datetime
 
 # Raw Package
 import numpy as np
@@ -201,7 +201,7 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "iuts jpmy emri webd"
+  password = "sktl hgmd hsit zsot"
   
   msg = MIMEMultipart()
   msg['Subject'] = "[Uncovered Platinum(Crypto)] " + RightNow()

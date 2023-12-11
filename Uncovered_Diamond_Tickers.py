@@ -165,7 +165,7 @@ def Hike():
         first_opening_price = round(value['Open'][0],2)
         latest_market_price = round(value['Close'][-1],2)
         
-        print(ticker,value)
+        #print(ticker,value)
         
         limit_price = round(first_opening_price * 1.6, 2)
 
@@ -200,8 +200,8 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "iuts jpmy emri webd"
-
+  password = "sktl hgmd hsit zsot"
+  
   msg = MIMEMultipart()
   msg['Subject'] = "[Uncovered Diamond(tickers)] " + RightNow()
   msg['From'] = sender_email
