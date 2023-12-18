@@ -42,8 +42,8 @@ ticker_list = [
                'BWAY', 
                'RELL',
                'DAIO', 
-               'WATT',
-               #'MCRB','SENS','OTLY'
+               #'WATT','MCRB','SENS','OTLY'
+               'TVTX'
                ]
 
 def data_dl():
@@ -58,10 +58,11 @@ def data_dl():
           yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
           yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
                                                                           #placed on 12/4 at $2.88 
-          yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+          #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
           #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
           #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
           #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
+          yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
           ]
   return data
 def plot_graph():
@@ -165,7 +166,10 @@ def Hike():
         first_opening_price = round(value['Open'][0],2)
         latest_market_price = round(value['Close'][-1],2)
         
-        #print(ticker,value)
+        #if 'TVTX' in ticker:
+        #   #for v in value: 
+        #   for i in range(0,len(value["Open"])):
+        #      print(ticker,value['Open'][i], value.index[i])
         
         limit_price = round(first_opening_price * 1.6, 2)
 
