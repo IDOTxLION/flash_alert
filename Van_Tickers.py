@@ -36,17 +36,21 @@ t = "    "
 
 
 ticker_list = [
+               'VIGAX', 'VTSAX', 'VLCAX',
                #'EYPT',
                'ISDR',
                #'RWLK', 
                'MRAM','CASS',
-               #'BWAY','DAIO',
-               'ITI','CYBN','MCRB','RMBL','INGN','GMDA','HUBC','OTLY', 'SENS','WATT'
+               #'BWAY',
+               'ITI','CYBN','MCRB','RMBL','INGN','GMDA','HUBC','OTLY', 'SENS','WATT','DAIO',
               ]
 
 def data_dl():
   data = [
           # Note: Check the analyst price before selling 
+          yf.download(tickers = 'VIGAX' ,period='1d', start='2021-12-30'), 
+          yf.download(tickers = 'VTSAX' ,period='1d', start='2021-12-30'), 
+          yf.download(tickers = 'VLCAX' ,period='1d', start='2023-12-08'), 
           #yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'),  #sold on 11/27 at $5.90
           yf.download(tickers = 'ISDR' ,period='1d', interval='1h', start=datetime(2023, 9, 20, 15, 30, 0)),  #$19.32, $19.32
           #yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
@@ -54,7 +58,6 @@ def data_dl():
           yf.download(tickers = 'CASS' ,period='1d', interval='1h', start=datetime(2023, 10, 2, 11, 30, 0)),  #$34.04, $36.52
           #yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), #sold on 11/20 at $4.87
           #yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
-          #                                                                #placed on 12/4 at $2.88 
           yf.download(tickers = 'ITI'  ,period='1d', interval='1h', start=datetime(2023, 10, 23, 11, 30, 0)),  #$4.05, $4.05
           yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'),  #$0.64, $0.44
           yf.download(tickers = 'MCRB' ,period='1d', interval='5m', start=datetime(2023, 12, 1, 9, 32, 0)),  #$1.24, $0.99 
@@ -65,6 +68,7 @@ def data_dl():
           yf.download(tickers = 'OTLY' ,period='1d', interval='5m', start=datetime(2023, 12, 6, 12, 44, 0)),  #$0.87, $1.24
           yf.download(tickers = 'SENS' ,period='1d', interval='5m', start=datetime(2023, 12, 6, 14, 33, 0)),  #$0.52, $0.63
           yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 12, 12, 12, 11, 0)),  #$1.84
+          yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 12, 20, 11, 40, 0)), #$2.88
           ]
   return data
 def plot_graph():

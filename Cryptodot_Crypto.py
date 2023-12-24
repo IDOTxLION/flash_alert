@@ -34,13 +34,9 @@ class color:
    END = '\033[0m'
 t = "    "
 
-ticker_list = ['XLM','MKR','BAT','DOGE','UNI',
-               'XRP','WCFG','AAVE', 'ANKR', 'ANT',
-               #'CRV',
-               'SPELL', 
-               #'COMP'
-               #'SAND','XTZ',
-             ]
+ticker_list = [
+               'CRV','SAND','XTZ',
+               ]
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
 #data = yf.download(tickers = ticker_list ,period='1d', start='2023-07-10')
@@ -48,21 +44,9 @@ ticker_list = ['XLM','MKR','BAT','DOGE','UNI',
 
 def data_dl():
   data = [
-          yf.download(tickers = 'XLM-USD' ,period='1d', start='2023-01-13'),
-          yf.download(tickers = 'MKR-USD' ,period='1d', start='2023-01-06'),
-          yf.download(tickers = 'BAT-USD' ,period='1d', start='2023-01-26'),
-          yf.download(tickers = 'DOGE-USD' ,period='1d', start='2023-07-31'),
-          yf.download(tickers = 'UNI-USD' ,period='1d', start='2023-11-01'),
-          yf.download(tickers = 'XRP-USD' ,period='1d', start='2023-11-13'),
-          yf.download(tickers = 'WCFG-USD' ,period='1d', start='2023-11-21'),
-          yf.download(tickers = 'AAVE-USD' ,period='1d', start='2023-11-29'),
-          yf.download(tickers = 'ANKR-USD' ,period='1d', start='2023-11-29'),
-          yf.download(tickers = 'ANT-USD' ,period='1d', start='2023-11-29'),
-          #yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-12-01'), #Diamond $0.52
-          yf.download(tickers = 'SPELL-USD' ,period='1d', start='2023-12-01'),
-          #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-12-05'), #Diamond $47.84
-          #yf.download(tickers = 'SAND-USD' ,period='1d', start='2023-12-22'), 
-          #yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-12-22'), #Diamond $0.92
+          yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-12-23'), #Diamond $0.52
+          yf.download(tickers = 'SAND-USD' ,period='1d', start='2023-12-22'), #Platinum $0.51 
+          yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-12-22'), #Diamond $0.92
           ]
   return data
 def plot_graph():
@@ -203,7 +187,7 @@ def send_email(email):
   password = "sktl hgmd hsit zsot"
   
   msg = MIMEMultipart()
-  msg['Subject'] = "[Uncovered Platinum(Crypto)] " + RightNow()
+  msg['Subject'] = "[CryptoCom(Crypto)] " + RightNow()
   msg['From'] = sender_email
   msg['To'] = receiver_email
 

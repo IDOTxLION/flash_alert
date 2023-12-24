@@ -41,9 +41,8 @@ ticker_list = [
                'DCTH',
                'BWAY', 
                'RELL',
-               'DAIO', 
-               #'WATT','MCRB','SENS','OTLY'
-               'TVTX'
+               #'DAIO','WATT','MCRB','SENS','OTLY'
+               'TVTX', 'XOMA','ANEB'
                ]
 
 def data_dl():
@@ -52,17 +51,19 @@ def data_dl():
           #yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
           #yf.download(tickers = 'INGN' ,period='1d', start='2023-06-27'),  #$10.30, $5.00
           #yf.download(tickers = 'RMBL' ,period='1d', start='2023-08-01'),  #$10.58, $5.67
-          yf.download(tickers = 'EYPT' ,period='1d',  interval='1h', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
+          yf.download(tickers = 'EYPT' ,period='1d',  interval='1d', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
           yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
-          yf.download(tickers = 'BWAY' ,period='1d',  interval='1h', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
+          yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
           yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
-          yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
+          #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
                                                                           #placed on 12/4 at $2.88 
           #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
           #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
           #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
           #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
           yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
+          yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
+          yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           ]
   return data
 def plot_graph():

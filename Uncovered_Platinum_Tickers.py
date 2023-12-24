@@ -100,7 +100,7 @@ def plot_graph_hike():
      limit_price = round(first_opening_price * 1.6, 2)
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc > 0:
-        print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
+        print ( "[Uncovered Platinum( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
         fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker))
         fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
   
@@ -132,8 +132,8 @@ def Drop():
         #if latest_market_price < first_opening_price * 0.8:
         if roc < 0:
             price_drop = round(first_opening_price - latest_market_price,2)
-            print ( "[Uncovered Diamond ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
-            content += ( "<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
+            print ( "[Uncovered Platinum ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
+            content += ( "<p style = 'font-size: 25px;'>[Uncovered Platinum( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"   Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"   Your price drop is " + str(price_drop) +
@@ -157,9 +157,9 @@ def Hike():
 
         #if latest_market_price < first_opening_price * 0.8:
         if roc > 0:
-            print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
+            print ( "[Uncovered Platinum( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
-            content += ("<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
+            content += ("<p style = 'font-size: 25px;'>[Uncovered Platinum( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"  Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
