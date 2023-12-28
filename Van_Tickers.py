@@ -60,7 +60,7 @@ def data_dl():
           #yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
           yf.download(tickers = 'ITI'  ,period='1d', interval='1h', start=datetime(2023, 10, 23, 11, 30, 0)),  #$4.05, $4.05
           yf.download(tickers = 'CYBN' ,period='1d', start='2023-11-10'),  #$0.64, $0.44
-          yf.download(tickers = 'MCRB' ,period='1d', interval='5m', start=datetime(2023, 12, 1, 9, 32, 0)),  #$1.24, $0.99 
+          yf.download(tickers = 'MCRB' ,period='1d', interval='1d', start=datetime(2023, 12, 1, 9, 32, 0)),  #$1.24, $0.99 
           yf.download(tickers = 'RMBL' ,period='1d', interval='5m', start=datetime(2023, 12, 4, 15, 35, 0)),  #$10.58, $5.67
           yf.download(tickers = 'INGN' ,period='1d', interval='5m', start=datetime(2023, 12, 5, 14, 44, 0)),  #$10.30, $5.00
           yf.download(tickers = 'GMDA' ,period='1d', interval='5m', start=datetime(2023, 12, 5, 14, 44, 0)),  #$3.30, $0.32

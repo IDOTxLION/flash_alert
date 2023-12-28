@@ -35,14 +35,14 @@ class color:
 t = "    "
 
 
-ticker_list = [#'WOLF', 
+ticker_list = ['WOLF', 
                'MARA', 'TSLA',
                #'MCRB',
               ] 
 
 def data_dl():
   data = [
-          #yf.download(tickers = 'WOLF' ,period='1d', start='2023-12-01'),          
+          yf.download(tickers = 'WOLF' ,period='1d', start='2023-12-01'),          
           yf.download(tickers = 'MARA' ,period='1d', start='2023-12-01'), 
           yf.download(tickers = 'TSLA' ,period='1d', start='2023-12-01'), 
           #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), 

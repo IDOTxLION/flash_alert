@@ -36,25 +36,56 @@ t = "    "
 
 
 ticker_list = [ 
-               #'GMDA','HUBC','INGN','RMBL',
+               'NNDM', 'OPTT', 'RWLK', 'CLSK', 'LTRX', 'MARA', 'PXLW', 'MOSYX','TXT',
+               #'GMDA',
+               'SCYX', 'EKSO', 'STXS',
+               #'HUBC',
+               'KSCP','VSTM',
+               #'INGN',
+               'AMSC',
+               #'RMBL',
+               'ALIM', 'DTIL',
+               #'ITI','MRAM','ISDR',
                'EYPT',
-               'DCTH',
-               'BWAY', 
-               'RELL',
-               #'DAIO','WATT','MCRB','SENS','OTLY'
+               #'CASS',
+               'BWAY','DCTH','RELL','CYBN',
+               #'DAIO', ???
+               #'WATT','MCRB','SENS','OTLY'
                'TVTX', 'XOMA','ANEB'
                ]
 
 def data_dl():
   data = [
+          yf.download(tickers = 'NNDM' ,period='1d', start='2020-06-02'),  #$1.79
+          yf.download(tickers = 'OPTT' ,period='1d', start='2020-06-16'),  #$1.79
+          yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),  #$1.79
+          yf.download(tickers = 'CLSK' ,period='1d', start='2020-09-08'),  #$1.79
+          yf.download(tickers = 'LTRX' ,period='1d', start='2020-09-23'),  #$1.79
+          yf.download(tickers = 'MARA' ,period='1d', start='2020-09-25'),  #$1.79
+          yf.download(tickers = 'PXLW' ,period='1d', start='2020-11-06'),  #$1.79
+          yf.download(tickers = 'MOSYX' ,period='1d', start='2020-08-04'),  #$1.79
+          yf.download(tickers = 'TXT' ,period='1d', start='2021-12-22'),  #$1.79
           #yf.download(tickers = 'GMDA' ,period='1d', start='2022-03-01'),  #$3.30, $0.32
+          yf.download(tickers = 'SCYX' ,period='1d', start='2022-03-16'),  #$1.79
+          yf.download(tickers = 'EKSO' ,period='1d', start='2023-01-10'),  #$1.79
+          yf.download(tickers = 'STXS' ,period='1d', start='2023-02-17'),  #$1.79
           #yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
+          yf.download(tickers = 'KSCP' ,period='1d', start='2023-05-26'),  #$1.79
+          yf.download(tickers = 'VSTM' ,period='1d', start='2020-06-20'),  #$1.79
           #yf.download(tickers = 'INGN' ,period='1d', start='2023-06-27'),  #$10.30, $5.00
+          yf.download(tickers = 'AMSC' ,period='1d', start='2023-07-27'),  #$1.79
           #yf.download(tickers = 'RMBL' ,period='1d', start='2023-08-01'),  #$10.58, $5.67
+          yf.download(tickers = 'ALIM' ,period='1d', start='2023-08-15'),  #$1.79
+          yf.download(tickers = 'DTIL' ,period='1d', start='2023-08-18'),  #$1.79
+          #yf.download(tickers = 'ITI' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+          #yf.download(tickers = 'MRAM' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+          #yf.download(tickers = 'ISDR' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
           yf.download(tickers = 'EYPT' ,period='1d',  interval='1d', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
-          yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
+          #yf.download(tickers = 'CASS' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
           yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
+          yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
           yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
+          #yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
           #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
                                                                           #placed on 12/4 at $2.88 
           #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84

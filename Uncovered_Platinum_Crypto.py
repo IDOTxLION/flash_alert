@@ -34,7 +34,7 @@ class color:
    END = '\033[0m'
 t = "    "
 
-ticker_list = ['XLM','MKR','BAT','DOGE','UNI',
+ticker_list = ['BTC','XLM','MKR','BAT','DOGE','UNI',
                'XRP','WCFG','AAVE', 'ANKR', 'ANT',
                #'CRV',
                'SPELL', 
