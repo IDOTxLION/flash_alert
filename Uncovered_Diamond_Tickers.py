@@ -51,7 +51,7 @@ ticker_list = [
                'BWAY','DCTH','RELL','CYBN',
                #'DAIO', ???
                #'WATT','MCRB','SENS','OTLY'
-               'TVTX', 'XOMA','EVGO','ANEB', 
+               'TVTX', 'XOMA','ANEB', 
                ]
 
 def data_dl():
@@ -94,7 +94,6 @@ def data_dl():
           #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
           yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
           yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
-          yf.download(tickers = 'EVGO' ,period='1d',  interval='5m', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
           yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           ]
   return data
