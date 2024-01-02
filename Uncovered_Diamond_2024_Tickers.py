@@ -36,66 +36,67 @@ t = "    "
 
 
 ticker_list = [ 
-               'NNDM', 'OPTT', 'RWLK', 'CLSK', 'LTRX', 'MARA', 'PXLW', 'MOSYX','TXT',
-               #'GMDA',
-               'SCYX', 'EKSO', 'STXS',
-               #'HUBC',
-               'KSCP','VSTM',
-               #'INGN',
-               'AMSC',
-               #'RMBL',
-               'ALIM', 'DTIL',
-               #'ITI','MRAM','ISDR',
-               'EYPT',
-               #'CASS',
-               'BWAY','DCTH','RELL','CYBN',
-               #'DAIO', ???
-               #'WATT','MCRB','SENS','OTLY'
-               'TVTX', 'XOMA','EVGO','ANEB', 
+               ##!< 'NNDM', 'OPTT', 'RWLK', 'CLSK', 'LTRX', 'MARA', 'PXLW', 'MOSYX','TXT',
+               ##!< #'GMDA',
+               ##!< 'SCYX', 'EKSO', 'STXS',
+               ##!< #'HUBC',
+               ##!< 'KSCP','VSTM',
+               ##!< #'INGN',
+               ##!< 'AMSC',
+               ##!< #'RMBL',
+               ##!< 'ALIM', 'DTIL',
+               ##!< #'ITI','MRAM','ISDR',
+               ##!< 'EYPT',
+               ##!< #'CASS',
+               ##!< 'BWAY','DCTH','RELL','CYBN',
+               ##!< #'DAIO', ???
+               ##!< #'WATT','MCRB','SENS','OTLY'
+               ##!< 'TVTX', 'XOMA','ANEB',
+               'EVGO', 
                ]
 
 def data_dl():
   data = [
-          yf.download(tickers = 'NNDM' ,period='1d', start='2020-06-02'),  #$1.79
-          yf.download(tickers = 'OPTT' ,period='1d', start='2020-06-16'),  #$1.79
-          yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),  #$1.79
-          yf.download(tickers = 'CLSK' ,period='1d', start='2020-09-08'),  #$1.79
-          yf.download(tickers = 'LTRX' ,period='1d', start='2020-09-23'),  #$1.79
-          yf.download(tickers = 'MARA' ,period='1d', start='2020-09-25'),  #$1.79
-          yf.download(tickers = 'PXLW' ,period='1d', start='2020-11-06'),  #$1.79
-          yf.download(tickers = 'MOSYX' ,period='1d', start='2020-08-04'),  #$1.79
-          yf.download(tickers = 'TXT' ,period='1d', start='2021-12-22'),  #$1.79
-          #yf.download(tickers = 'GMDA' ,period='1d', start='2022-03-01'),  #$3.30, $0.32
-          yf.download(tickers = 'SCYX' ,period='1d', start='2022-03-16'),  #$1.79
-          yf.download(tickers = 'EKSO' ,period='1d', start='2023-01-10'),  #$1.79
-          yf.download(tickers = 'STXS' ,period='1d', start='2023-02-17'),  #$1.79
-          #yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
-          yf.download(tickers = 'KSCP' ,period='1d', start='2023-05-26'),  #$1.79
-          yf.download(tickers = 'VSTM' ,period='1d', start='2020-06-20'),  #$1.79
-          #yf.download(tickers = 'INGN' ,period='1d', start='2023-06-27'),  #$10.30, $5.00
-          yf.download(tickers = 'AMSC' ,period='1d', start='2023-07-27'),  #$1.79
-          #yf.download(tickers = 'RMBL' ,period='1d', start='2023-08-01'),  #$10.58, $5.67
-          yf.download(tickers = 'ALIM' ,period='1d', start='2023-08-15'),  #$1.79
-          yf.download(tickers = 'DTIL' ,period='1d', start='2023-08-18'),  #$1.79
-          #yf.download(tickers = 'ITI' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          #yf.download(tickers = 'MRAM' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          #yf.download(tickers = 'ISDR' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          yf.download(tickers = 'EYPT' ,period='1d',  interval='1d', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
-          #yf.download(tickers = 'CASS' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
-          yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
-          yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
-          #yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
-          #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
-                                                                          #placed on 12/4 at $2.88 
-          #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
-          #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
-          #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
-          yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
-          yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
+        ##!<   yf.download(tickers = 'NNDM' ,period='1d', start='2020-06-02'),  #$1.79
+        ##!<   yf.download(tickers = 'OPTT' ,period='1d', start='2020-06-16'),  #$1.79
+        ##!<   yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),  #$1.79
+        ##!<   yf.download(tickers = 'CLSK' ,period='1d', start='2020-09-08'),  #$1.79
+        ##!<   yf.download(tickers = 'LTRX' ,period='1d', start='2020-09-23'),  #$1.79
+        ##!<   yf.download(tickers = 'MARA' ,period='1d', start='2020-09-25'),  #$1.79
+        ##!<   yf.download(tickers = 'PXLW' ,period='1d', start='2020-11-06'),  #$1.79
+        ##!<   yf.download(tickers = 'MOSYX' ,period='1d', start='2020-08-04'),  #$1.79
+        ##!<   yf.download(tickers = 'TXT' ,period='1d', start='2021-12-22'),  #$1.79
+        ##!<   #yf.download(tickers = 'GMDA' ,period='1d', start='2022-03-01'),  #$3.30, $0.32
+        ##!<   yf.download(tickers = 'SCYX' ,period='1d', start='2022-03-16'),  #$1.79
+        ##!<   yf.download(tickers = 'EKSO' ,period='1d', start='2023-01-10'),  #$1.79
+        ##!<   yf.download(tickers = 'STXS' ,period='1d', start='2023-02-17'),  #$1.79
+        ##!<   #yf.download(tickers = 'HUBC' ,period='1d', start='2023-03-20'),  #$2.39, $0.25
+        ##!<   yf.download(tickers = 'KSCP' ,period='1d', start='2023-05-26'),  #$1.79
+        ##!<   yf.download(tickers = 'VSTM' ,period='1d', start='2020-06-20'),  #$1.79
+        ##!<   #yf.download(tickers = 'INGN' ,period='1d', start='2023-06-27'),  #$10.30, $5.00
+        ##!<   yf.download(tickers = 'AMSC' ,period='1d', start='2023-07-27'),  #$1.79
+        ##!<   #yf.download(tickers = 'RMBL' ,period='1d', start='2023-08-01'),  #$10.58, $5.67
+        ##!<   yf.download(tickers = 'ALIM' ,period='1d', start='2023-08-15'),  #$1.79
+        ##!<   yf.download(tickers = 'DTIL' ,period='1d', start='2023-08-18'),  #$1.79
+        ##!<   #yf.download(tickers = 'ITI' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+        ##!<   #yf.download(tickers = 'MRAM' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+        ##!<   #yf.download(tickers = 'ISDR' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+        ##!<   yf.download(tickers = 'EYPT' ,period='1d',  interval='1d', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
+        ##!<   #yf.download(tickers = 'CASS' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+        ##!<   yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
+        ##!<   yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
+        ##!<   yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
+        ##!<   #yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
+        ##!<   #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
+        ##!<                                                                   #placed on 12/4 at $2.88 
+        ##!<   #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+        ##!<   #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
+        ##!<   #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
+        ##!<   #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
+        ##!<   yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
+        ##!<   yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
+        ##!<   yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           yf.download(tickers = 'EVGO' ,period='1d',  interval='5m', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
-          yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           ]
   return data
 def plot_graph():
@@ -150,7 +151,7 @@ def plot_graph_hike():
      limit_price = round(first_opening_price * 1.6, 2)
      roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);
      if roc > 0:
-        print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
+        print ( "[Uncovered Diamond 2024 ( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
         fig.add_trace(go.Candlestick(x = value.index, open = value['Open'], high=value['High'], low=value['Low'], close=value['Close'], name = ticker))
         fig.add_trace(go.Scatter(x=value.index ,y=[limit_price], mode='markers', marker=dict(size=10), name='limit_price'))
   
@@ -182,8 +183,8 @@ def Drop():
         #if latest_market_price < first_opening_price * 0.8:
         if roc < 0:
             price_drop = round(first_opening_price - latest_market_price,2)
-            print ( "[Uncovered Diamond ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
-            content += ( "<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
+            print ( "[Uncovered Diamond 2024 ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
+            content += ( "<p style = 'font-size: 25px;'>[Uncovered Diamond 2024 ( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"   Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"   Your price drop is " + str(price_drop) +
@@ -211,9 +212,9 @@ def Hike():
 
         #if latest_market_price < first_opening_price * 0.8:
         if roc >= 0:
-            print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
+            print ( "[Uncovered Diamond 2024 ( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
-            content += ("<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
+            content += ("<p style = 'font-size: 25px;'>[Uncovered Diamond 2024( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"  Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
@@ -240,7 +241,7 @@ def send_email(email):
   password = "sktl hgmd hsit zsot"
   
   msg = MIMEMultipart()
-  msg['Subject'] = "[Uncovered Diamond(tickers)] " + RightNow()
+  msg['Subject'] = "[Uncovered Diamond 2024 (tickers)] " + RightNow()
   msg['From'] = sender_email
   msg['To'] = receiver_email
 
