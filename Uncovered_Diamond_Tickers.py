@@ -48,10 +48,9 @@ ticker_list = [
                #'ITI','MRAM','ISDR',
                'EYPT',
                #'CASS',
-               'BWAY','DCTH','RELL','CYBN',
-               #'DAIO', ???
-               #'WATT','MCRB','SENS','OTLY'
-               'TVTX', 'XOMA','ANEB', 
+               'BWAY','DCTH','RELL',
+               #'CYBN','DAIO', ???, 'WATT','MCRB','SENS','OTLY'
+               'TVTX', 'XOMA','ANEB', 'EVGO', 
                ]
 
 def data_dl():
@@ -85,7 +84,7 @@ def data_dl():
           yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
           yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
           yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
-          yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
+          #yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
           #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
                                                                           #placed on 12/4 at $2.88 
           #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
@@ -95,6 +94,7 @@ def data_dl():
           yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
           yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
           yf.download(tickers = 'ANEB' ,period='1d',  interval='1d', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
+          yf.download(tickers = 'EVGO' ,period='1d',  interval='5m', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
           ]
   return data
 def plot_graph():
