@@ -85,7 +85,7 @@ def data_dl():
           yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
           yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
           yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
-          #yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
+          yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
           #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
                                                                           #placed on 12/4 at $2.88 
           #yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
@@ -94,7 +94,7 @@ def data_dl():
           #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
           yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
           yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
-          yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
+          yf.download(tickers = 'ANEB' ,period='1d',  interval='1d', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           ]
   return data
 def plot_graph():
@@ -181,6 +181,7 @@ def Drop():
         #if latest_market_price < first_opening_price * 0.8:
         if roc < 0:
             price_drop = round(first_opening_price - latest_market_price,2)
+            #print(ticker + " "+ str(first_opening_price)+" "+ str(latest_market_price)+ " " + str(roc))
             print ( "[Uncovered Diamond ( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
             content += ( "<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
@@ -207,9 +208,10 @@ def Hike():
 
         #(New Price - Old Price)/Old Price and then multiply that number by 100
         roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);    
-
+        
         #if latest_market_price < first_opening_price * 0.8:
         if roc >= 0:
+            #print(ticker + " "+ str(first_opening_price)+" "+ str(latest_market_price)+ " " + str(roc))
             print ( "[Uncovered Diamond( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
             content += ("<p style = 'font-size: 25px;'>[Uncovered Diamond( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
@@ -289,6 +291,11 @@ def main():
 
 if __name__ == "__main__":
      main()
+   #   for value, ticker in zip(data_dl(),ticker_list):
+   #       first_opening_price = round(value['Open'][0],2)
+   #       latest_market_price = round(value['Close'][-1],2)
+   #       roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2); 
+   #       print(ticker + " "+ str(first_opening_price)+" "+ str(latest_market_price)+ " " + str(roc))
      #send_email()
      #send_email2()
 
