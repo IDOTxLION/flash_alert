@@ -35,7 +35,7 @@ class color:
 t = "    "
 
 ticker_list = [
-               'CRV','SAND','XTZ',
+               'CRV','SAND','XTZ', 'STORJ',
                ]
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
@@ -47,6 +47,7 @@ def data_dl():
           yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-12-23'), #Diamond $0.52
           yf.download(tickers = 'SAND-USD' ,period='1d', start='2023-12-22'), #Platinum $0.51 
           yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-12-22'), #Diamond $0.92
+          yf.download(tickers = 'STORJ-USD' ,period='1d', start='2024-1-3'), #Platinum $0.55 
           ]
   return data
 def plot_graph():
