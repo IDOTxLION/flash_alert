@@ -39,7 +39,9 @@ ticker_list = ['NNDM' ,'OPTT' ,'RWLK','CLSK' ,'LTRX' ,'MARA' ,
                #'SCYX' ,
                'EKSO','STXS','HUBC','KSCP','VSTM','INGN','AMSC','RMBL', 'ALIM','DTIL',
                 'ITI','MRAM','ISDR','EYPT','CASS','BWAY','DAIO','CYBN',
-               'DCTH','RELL','WATT','MCRB','SENS','OTLY']
+               'DCTH',
+               #'RELL',
+               'WATT','MCRB','SENS','OTLY',]
 
 def data_dl():
   data = [
@@ -104,7 +106,7 @@ def data_dl():
           yf.download(tickers = 'BWAY' ,period='1d', interval='1h',start=datetime(2023, 9, 15, 9, 30, 0)),
           yf.download(tickers = 'DAIO' ,period='1d', interval='1h',start=datetime(2023, 9, 15, 9, 30, 0)),
           yf.download(tickers = 'DCTH' ,period='1d', interval='1h',start=datetime(2023, 9, 25, 9, 30, 0)),
-          yf.download(tickers = 'RELL' ,period='1d', interval='1h',start=datetime(2023, 10, 4, 9, 30, 0)),
+          #yf.download(tickers = 'RELL' ,period='1d', interval='1h',start=datetime(2023, 10, 4, 9, 30, 0)), sell on 1/11/24
           yf.download(tickers = 'CYBN' ,period='1d', interval='1h',start=datetime(2023, 11, 1, 9, 30, 0)),
           # yf.download(tickers = 'AFIB' ,period='1d', start='2022-03-09'), sell on 11/09/2023
           # yf.download(tickers = 'CDLX' ,period='1d', start='2023-09-01'), sell on 11/09/2023
