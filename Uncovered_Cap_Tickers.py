@@ -119,6 +119,7 @@ def plot_graph_hike():
 
 
 def Drop():
+    drop_ticker={}
     content = ""
     for ticker, value in zip(ticker_list, data_dl()):
         first_opening_price = round(value['Open'][0],2)
@@ -133,6 +134,7 @@ def Drop():
         #if latest_market_price < first_opening_price * 0.8:
         if roc < 0:
             price_drop = round(first_opening_price - latest_market_price,2)
+            drop_ticker[ticker] = [roc,price_drop, limit_price,first_opening_price,latest_market_price,stop_price,]
             print ( "[Uncovered Cap( "+ color.BOLD + ticker + color.END + ")] price drop: " + str(roc) + "%")
             content += ( "<p style = 'font-size: 25px;'>[Uncovered Cap( <b>" + ticker + "</b>)] price drop: " + str(roc) + "%" +
                   "   <br>"+t+t+"   Your first opening price was " + str(first_opening_price) +
@@ -142,9 +144,12 @@ def Drop():
                   "   <br>"+t+t+"   Your limit price is " + str(limit_price)+
                   "<br>"
                   )
-    return content  
+    return drop_ticker, content
+
+ 
 
 def Hike():
+    hike_ticker={}
     content = ""
     for ticker, value in zip(ticker_list, data_dl()):
         first_opening_price = round(value['Open'][0],2)
@@ -154,21 +159,49 @@ def Hike():
         #print(ticker, value)
         
         limit_price = round(first_opening_price * 1.6, 2)
+        stop_price=0; #temp measure
 
         #(New Price - Old Price)/Old Price and then multiply that number by 100
         roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2);    
-
+        
         #if latest_market_price < first_opening_price * 0.8:
         if roc >= 0:
             print ( "[Uncovered Cap( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,2)
+            hike_ticker[ticker] = [roc,price_hike, limit_price, first_opening_price,latest_market_price,stop_price]
             content += ("<p style = 'font-size: 25px;'>[Uncovered Cap( <b>" + ticker + "</b>)] price hike: " + str(roc) + "%" + 
                   "   <br>"+t+t+"  Your first opening price was " + str(first_opening_price) +
                   "   <br>"+t+t+"  Your latest market price is " + str(latest_market_price) +
                   "   <br>"+t+t+"  Your price hike is " + str(price_hike) +
                   "   <br>"+t+t+"  Your limit price is " + str(limit_price) +
                   "<br>")
-    return content   
+    return hike_ticker, content  
+
+def Sort():
+    drop_ticker, _ = Drop() 
+    hike_ticker, _ = Hike() 
+
+    combined_data = {**drop_ticker, **hike_ticker}
+
+    sorted_tickers = sorted(combined_data.items(), key=lambda x: x[1][0], reverse=True)
+
+    content = ""
+    for ticker, values in sorted_tickers:
+        roc, price_change, limit_price, first_opening_price, latest_market_price, stop_limit = values
+        change_type = "price hike" if roc >= 0 else "price drop"
+        # Construct the content for each ticker
+        content += ("<p style='font-size: 25px;'>[Uncovered Diamond( <b>{}</b>)] {}: {}%".format(ticker, change_type, roc) +
+                    "<br>&nbsp;&nbsp;Your first opening price was " + str(first_opening_price) +
+                    "<br>&nbsp;&nbsp;Your latest market price is " + str(latest_market_price) +
+                    "<br>&nbsp;&nbsp;Your {} is ".format(change_type) + str(price_change) +
+                    "<br>&nbsp;&nbsp;Your limit price is " + str(limit_price))
+        if change_type == "price drop":
+            content += "<br>&nbsp;&nbsp;Your stop price is " + str(stop_limit)
+        content += "<br>" 
+    return content
+
+
+
     
 
 # fig.add_traces(go.Candlestick(x = data[4].index, open = data[4]['Open'], high=data[4]['High'], low=data[4]['Low'], close=data[4]['Close'], name = 'VSTM'))
@@ -194,9 +227,9 @@ def send_email(email):
   msg['To'] = receiver_email
 
   content = ""
-  content += Hike() + "<br>"
-  
-  content += Drop()
+  #content += Hike() + "<br>"
+  #content += Drop()
+  content += Sort()
   
 
    
