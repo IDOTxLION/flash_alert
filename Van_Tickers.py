@@ -42,7 +42,7 @@ ticker_list = [
                #'RWLK', 
                'MRAM','CASS',
                #'BWAY',
-               'ITI','CYBN','MCRB','RMBL','INGN','GMDA','HUBC','OTLY', 'SENS','WATT','DAIO',
+               'ITI','CYBN','MCRB','RMBL','INGN','GMDA','HUBC','OTLY', 'SENS','WATT','DAIO','CHRS','NVTA','MNMD',
               ]
 
 def data_dl():
@@ -69,6 +69,9 @@ def data_dl():
           yf.download(tickers = 'SENS' ,period='1d', interval='5m', start=datetime(2023, 12, 6, 14, 33, 0)),  #$0.52, $0.63
           yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 12, 12, 12, 11, 0)),  #$1.84
           yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 12, 20, 11, 40, 0)), #$2.88
+          yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
+          yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
+          yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
           ]
   return data
 def plot_graph():

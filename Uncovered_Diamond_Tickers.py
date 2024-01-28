@@ -50,7 +50,9 @@ ticker_list = [
                #'CASS',
                'BWAY','DCTH',
                #'RELL','CYBN','DAIO', ???, 'WATT','MCRB','SENS','OTLY'
-               'TVTX', 'XOMA','ANEB', 'EVGO', 'CHRS', 'NVTA','MNMD','REAL', 
+               'TVTX', 'XOMA','ANEB', 'EVGO', 
+               #'CHRS', 'NVTA','MNMD',
+               'REAL', 
                ]
 
 def data_dl():
@@ -95,9 +97,9 @@ def data_dl():
           yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
           yf.download(tickers = 'ANEB' ,period='1d',  interval='1d', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           yf.download(tickers = 'EVGO' ,period='1d',  interval='5m', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
-          yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
-          yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
-          yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
+          #yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
+          #yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
+          #yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
           yf.download(tickers = 'REAL' ,period='1d',  interval='5m', start=datetime(2024, 1, 17, 9, 30, 0)),  #$1.56
           ]
   return data
