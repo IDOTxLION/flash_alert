@@ -93,9 +93,9 @@ def data_dl():
           #yf.download(tickers = 'MCRB' ,period='1d', start='2023-11-03'), #$1.24, $0.99
           #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
           #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
-          yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
-          yf.download(tickers = 'XOMA' ,period='1d',  interval='5m', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
-          yf.download(tickers = 'ANEB' ,period='1d',  interval='1d', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
+          yf.download(tickers = 'TVTX' ,period='1d',  interval='1h', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
+          yf.download(tickers = 'XOMA' ,period='1d',  interval='1h', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
+          yf.download(tickers = 'ANEB' ,period='1d',  interval='1h', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
           yf.download(tickers = 'EVGO' ,period='1d',  interval='5m', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
           #yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
           #yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
