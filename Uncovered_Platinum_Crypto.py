@@ -233,7 +233,7 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "sktl hgmd hsit zsot"
+  password = "xxmg qaps ojvn tmtg"
   
   msg = MIMEMultipart()
   msg['Subject'] = "[Uncovered Platinum(Crypto)] " + RightNow()

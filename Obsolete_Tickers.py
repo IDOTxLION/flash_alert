@@ -80,7 +80,7 @@ def data_dl():
           #yf.download(tickers = 'CLXT' ,period='1d', start='2021-10-26'), Delisted
           #yf.download(tickers = 'AQMS' ,period='1d', start='2021-12-06'), sell on 8/30/23
           #yf.download(tickers = 'CBUS' ,period='1d', start='2021-12-22'), sell on 8/30/23
-          yf.download(tickers = 'TRT' ,period='1d',interval='1h', start=datetime(2021, 12, 22, 9, 30, 0)),
+          yf.download(tickers = 'TRT' ,period='1d', start=datetime(2021, 12, 22, 9, 30, 0)),
           yf.download(tickers = 'GMDA' ,period='1d', interval='1h',start=datetime(2023, 3, 1, 9, 30, 0)),
           #yf.download(tickers = 'SCYX' ,period='1d', start='2022-03-16'), sell on 11/29/23
           yf.download(tickers = 'EKSO' ,period='1d', interval='1h',start=datetime(2023, 1, 10, 9, 30, 0)),
@@ -217,7 +217,7 @@ def Avg():
         Start_Average = round(sum1/50,2)
         End_Average = round(sum2/50,2)
       else:
-         print("DBGMIR", ticker, len(value['Open']))
+         #print("DBGMIR", ticker, len(value['Open']))
          #for i in range(0,len(value["Open"]),24):
          for i in range(0,49*24,24):
             try:
@@ -392,7 +392,7 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "sktl hgmd hsit zsot"
+  password = "xxmg qaps ojvn tmtg"
   
   msg = MIMEMultipart()
   msg['Subject'] = "[Obsolete(tickers)] " + RightNow()
