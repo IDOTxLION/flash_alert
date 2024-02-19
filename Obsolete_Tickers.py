@@ -114,6 +114,7 @@ def data_dl():
           yf.download(tickers = 'MCRB' ,period='1d', interval='1h',start=datetime(2023, 11, 3, 9, 30, 0)),
           yf.download(tickers = 'SENS' ,period='1d', interval='1h',start=datetime(2023, 11, 14, 9, 30, 0)),
           yf.download(tickers = 'OTLY' ,period='1d', interval='1h',start=datetime(2023, 12, 1, 11, 30, 0))
+          #yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49 Sell on 2/15/2024
           ]
   return data
 def plot_graph():
