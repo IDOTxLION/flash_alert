@@ -35,7 +35,7 @@ class color:
 t = "    "
 
 ticker_list = [
-               'CRV','SAND','XTZ', 'STORJ','MANA', 'AAVE', 'SPELL',
+               'CRO','CRV','SAND','XTZ', 'STORJ','MANA', 'AAVE', 'SPELL','ALICE'
                ]
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
@@ -44,6 +44,7 @@ ticker_list = [
 
 def data_dl():
   data = [
+          yf.download(tickers = 'CRO-USD' ,period='1d', start='2024-2-29'), #Platinum $0.0897
           yf.download(tickers = 'CRV-USD' ,period='1d', start='2023-12-23'), #Diamond $0.52
           yf.download(tickers = 'SAND-USD' ,period='1d', start='2023-12-22'), #Platinum $0.51 
           yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-12-22'), #Diamond $0.92
@@ -51,6 +52,7 @@ def data_dl():
           yf.download(tickers = 'MANA-USD' ,period='1d', start='2024-2-17'), #Platinum $0.50 
           yf.download(tickers = 'AAVE-USD' ,period='1d', start='2024-2-17'), #Platinum $95.63 
           yf.download(tickers = 'SPELL-USD' ,period='1d', start='2024-2-17'), #Platinum $0.00063 
+          yf.download(tickers = 'ALICE-USD' ,period='1d', start='2024-2-29'), #Platinum $1.92456
           ]
   return data
 
