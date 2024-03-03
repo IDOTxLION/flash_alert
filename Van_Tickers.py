@@ -38,15 +38,19 @@ t = "    "
 ticker_list = [
                'VIGAX', 'VTSAX', 'VLCAX',
                #'EYPT',
-               'ISDR',
+              #  'ISDR',
                #'RWLK', 
-               'MRAM','CASS',
+               #  'MRAM',
+               'CASS',
                #'BWAY',
                'ITI','CYBN','MCRB','RMBL',
-              #  'INGN',
-               'GMDA','HUBC','OTLY', 'SENS','WATT','DAIO','CHRS','NVTA','MNMD',
-               'TVTX','EKSO','ALIM','MASX'
+               #  'INGN',
+               'GMDA','HUBC','OTLY', 'SENS','WATT','DAIO','CHRS',
+              #  'NVTA',
+              #  'MNMD',
+               'TVTX','EKSO','ALIM','MASS'
               ]
+
 
 def data_dl():
   data = [
@@ -55,9 +59,9 @@ def data_dl():
           yf.download(tickers = 'VTSAX' ,period='1d', start='2021-12-30'), 
           yf.download(tickers = 'VLCAX' ,period='1d', start='2023-12-08'), 
           #yf.download(tickers = 'EYPT' ,period='1d', start='2023-09-19'),  #sold on 11/27 at $5.90
-          yf.download(tickers = 'ISDR' ,period='1d', interval='1h', start=datetime(2023, 9, 20, 15, 30, 0)),  #$19.32, $19.32
+          # yf.download(tickers = 'ISDR' ,period='1d', interval='1h', start=datetime(2023, 9, 20, 15, 30, 0)),  #$19.32, $19.32
           #yf.download(tickers = 'RWLK' ,period='1d', start='2023-09-21'), 
-          yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'),  #$9.20, $9.15
+          # yf.download(tickers = 'MRAM' ,period='1d', start='2023-09-21'),  #$9.20, $9.15
           yf.download(tickers = 'CASS' ,period='1d', interval='1h', start=datetime(2023, 10, 2, 11, 30, 0)),  #$34.04, $36.52
           #yf.download(tickers = 'BWAY' ,period='1d', start='2023-10-03'), #sold on 11/20 at $4.87
           #yf.download(tickers = 'DAIO' ,period='1d', start='2023-10-16'), #sold on 11/30 at $2.90
@@ -73,12 +77,12 @@ def data_dl():
           yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 12, 12, 12, 11, 0)),  #$1.84
           yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 12, 20, 11, 40, 0)), #$2.88
           yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
-          yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
-          yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
+          # yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
+          # yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
           yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2024, 2, 22, 9, 30, 0)),  #$7.79
           yf.download(tickers = 'EKSO' ,period='1d',  interval='5m', start=datetime(2024, 2, 28, 9, 30, 0)),  #$1.98
           yf.download(tickers = 'ALIM' ,period='1d',  interval='5m', start=datetime(2024, 2, 28, 9, 30, 0)),  #$3.38
-          yf.download(tickers = 'MASX' ,period='1d',  interval='5m', start=datetime(2024, 2, 29, 9, 30, 0)),  #$7.42
+          yf.download(tickers = 'MASS' ,period='1d',  interval='5m', start=datetime(2024, 2, 29, 9, 30, 0)),  #$7.42
           ]
   return data
 def plot_graph():
@@ -251,7 +255,7 @@ def send_email(email):
   smtp_server = "smtp.gmail.com"
   sender_email = "aaleensyed20@gmail.com"  # Enter your address
   receiver_email = email  # Enter receiver address
-  password = "sktl hgmd hsit zsot"
+  password = "xxmg qaps ojvn tmtg"
   
   msg = MIMEMultipart()
   msg['Subject'] = "[Vanguard(tickers)] " + RightNow() 
