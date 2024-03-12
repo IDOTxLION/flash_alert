@@ -48,7 +48,8 @@ ticker_list = [
                'GMDA','HUBC','OTLY', 'SENS','WATT','DAIO','CHRS',
               #  'NVTA',
               #  'MNMD',
-               'TVTX','EKSO','ALIM','MASS'
+               'TVTX','EKSO','ALIM','MASS',
+               'ANEB','RSKD'
               ]
 
 
@@ -76,13 +77,15 @@ def data_dl():
           yf.download(tickers = 'SENS' ,period='1d', interval='1h', start=datetime(2023, 12, 6, 14, 33, 0)),  #$0.52, $0.63
           yf.download(tickers = 'WATT' ,period='1d',  interval='1h', start=datetime(2023, 12, 12, 12, 11, 0)),  #$1.84
           yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 12, 20, 11, 40, 0)), #$2.88
-          yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
+          yf.download(tickers = 'CHRS' ,period='1d',  interval='1h', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
           # yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49
-          # yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
+          # yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),#$3.96
           yf.download(tickers = 'TVTX' ,period='1d',  interval='5m', start=datetime(2024, 2, 22, 9, 30, 0)),  #$7.79
           yf.download(tickers = 'EKSO' ,period='1d',  interval='5m', start=datetime(2024, 2, 28, 9, 30, 0)),  #$1.98
           yf.download(tickers = 'ALIM' ,period='1d',  interval='5m', start=datetime(2024, 2, 28, 9, 30, 0)),  #$3.38
           yf.download(tickers = 'MASS' ,period='1d',  interval='5m', start=datetime(2024, 2, 29, 9, 30, 0)),  #$7.42
+          yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2024, 3, 5, 9, 30, 0)),   #5.32
+          yf.download(tickers = 'RSKD' ,period='1d',  interval='5m', start=datetime(2024, 3, 6, 9, 30, 0)),   #5.32
           ]
   return data
 def plot_graph():
@@ -218,11 +221,15 @@ def Sort():
     hike_ticker, _ = Hike() 
 
     combined_data = {**drop_ticker, **hike_ticker}
-
-    sorted_tickers = sorted(combined_data.items(), key=lambda x: x[1][0], reverse=True)
-
     content = ""
-    for ticker, values in sorted_tickers:
+    for ticker,values in sorted(combined_data.items(), key=lambda x: x[1][0], reverse=True): #(k,v) tuple
+       #print ("DEBUG TICKER", k)
+       #print ("DEBUG V",v)
+
+    #sorted_tickers = sorted(combined_data.items(), key=lambda x: x[1][0], reverse=True)
+    
+    
+    #for ticker, values in sorted_tickers:
         roc, price_change, limit_price, first_opening_price, latest_market_price, stop_limit = values
         change_type = "price hike" if roc >= 0 else "price drop"
         # Construct the content for each ticker
