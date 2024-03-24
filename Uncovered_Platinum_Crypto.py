@@ -64,7 +64,7 @@ def data_dl():
           #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-12-05'), #Diamond $47.84
           #yf.download(tickers = 'SAND-USD' ,period='1d', start='2023-12-22'), 
           #yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-12-22'), #Diamond $0.92
-          yf.download(tickers = 'HONEY' ,period='1d', start='2023-03-21'), #Diamond $0.13
+          yf.download(tickers = 'HONEY22850-USD' ,period='1d', start='2023-03-21'), #Diamond $0.13
           ]
   return data
 def plot_graph():
@@ -181,7 +181,7 @@ def Hike():
         stop_price=0; #temp measure
 
         #if latest_market_price < first_opening_price * 0.8:
-        if roc > 0:
+        if roc >= 0:
             print ( "[Crypto( "+ color.BOLD + ticker + color.END + ")] price hike: " + str(roc) + "%")
             price_hike = round(latest_market_price - first_opening_price,5)
             hike_ticker[ticker] = [roc,price_hike, limit_price, first_opening_price,latest_market_price,stop_price]
@@ -243,9 +243,9 @@ def send_email(email):
   msg['To'] = receiver_email
 
   content = ""
-  content += Hike() + "<br>"
-  
-  content += Drop()
+  #content += Hike() + "<br>"
+  #content += Drop()
+  content += Sort()
   
 
    
@@ -288,6 +288,11 @@ def main():
 
 if __name__ == "__main__":
      main()
+   #   for value, ticker in zip(data_dl(),ticker_list):
+   #       first_opening_price = round(value['Open'][0],2)
+   #       latest_market_price = round(value['Close'][-1],2)
+   #       roc = round(((latest_market_price - first_opening_price) / first_opening_price) * 100,2); 
+   #       print(ticker + " "+ str(first_opening_price)+" "+ str(latest_market_price)+ " " + str(roc))
      #send_email()
      #send_email2()
 

@@ -101,8 +101,8 @@ def data_dl():
           yf.download(tickers = 'EVGO' ,period='1d',  interval='1h', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
           #yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
           #yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49 -- SELL on 2/16/24
-          yf.download(tickers = 'MNMD' ,period='1d',  interval='5m', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
-          yf.download(tickers = 'REAL' ,period='1d',  interval='5m', start=datetime(2024, 1, 17, 9, 30, 0)),  #$1.56
+          yf.download(tickers = 'MNMD' ,period='1d',  interval='1h', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
+          yf.download(tickers = 'REAL' ,period='1d',  interval='1h', start=datetime(2024, 1, 17, 9, 30, 0)),  #$1.56
           #yf.download(tickers = 'MASS' ,period='1d',  interval='5m', start=datetime(2024, 2, 13, 9, 30, 0)),  #$6.67
           yf.download(tickers = 'PHAT' ,period='1d',  interval='5m', start=datetime(2024, 2, 13, 9, 30, 0)),  #$5.98
           yf.download(tickers = 'APLT' ,period='1d',  interval='5m', start=datetime(2024, 3, 11, 9, 30, 0)),  #$5.80
@@ -216,11 +216,7 @@ def Hike():
     for ticker, value in zip(ticker_list, data_dl()):
         first_opening_price = round(value['Open'][0],2)
         latest_market_price = round(value['Close'][-1],2)
-        
-        #if 'TVTX' in ticker:
-        #   #for v in value: 
-        #   for i in range(0,len(value["Open"])):
-        #      print(ticker,value['Open'][i], value.index[i])
+
         
         limit_price = round(first_opening_price * 1.6, 2)
         stop_price=0; #temp measure
