@@ -54,7 +54,7 @@ ticker_list = [
                #'CHRS', 'NVTA',
                'MNMD', 'REAL',
                #'MASS', 
-               'PHAT', 
+               'PHAT', 'APLT','ORIC','ATOS',
                ]
 
 def data_dl():
@@ -105,6 +105,9 @@ def data_dl():
           yf.download(tickers = 'REAL' ,period='1d',  interval='5m', start=datetime(2024, 1, 17, 9, 30, 0)),  #$1.56
           #yf.download(tickers = 'MASS' ,period='1d',  interval='5m', start=datetime(2024, 2, 13, 9, 30, 0)),  #$6.67
           yf.download(tickers = 'PHAT' ,period='1d',  interval='5m', start=datetime(2024, 2, 13, 9, 30, 0)),  #$5.98
+          yf.download(tickers = 'APLT' ,period='1d',  interval='5m', start=datetime(2024, 3, 11, 9, 30, 0)),  #$5.80
+          yf.download(tickers = 'ORIC' ,period='1d',  interval='5m', start=datetime(2024, 3, 13, 9, 30, 0)),  #$14.08
+          yf.download(tickers = 'ATOS' ,period='1d',  interval='5m', start=datetime(2024, 2, 19, 9, 30, 0)),  #$1.24
           ]
   return data
 def plot_graph():

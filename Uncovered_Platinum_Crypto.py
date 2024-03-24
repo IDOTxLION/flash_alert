@@ -40,6 +40,7 @@ ticker_list = ['BTC','XLM','MKR','BAT','DOGE','UNI',
                'SPELL', 
                #'COMP'
                #'SAND','XTZ',
+               'HONEY'
              ]
 #yf.download(tickers="BTC-USD",period="22 last hours",interval="15 mins")
 #data = yf.download(tickers='BTC-USD', period = '60m', interval = '1m')
@@ -63,6 +64,7 @@ def data_dl():
           #yf.download(tickers = 'COMP-USD' ,period='1d', start='2023-12-05'), #Diamond $47.84
           #yf.download(tickers = 'SAND-USD' ,period='1d', start='2023-12-22'), 
           #yf.download(tickers = 'XTZ-USD' ,period='1d', start='2023-12-22'), #Diamond $0.92
+          yf.download(tickers = 'HONEY' ,period='1d', start='2023-03-21'), #Diamond $0.13
           ]
   return data
 def plot_graph():
