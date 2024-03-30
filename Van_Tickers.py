@@ -49,7 +49,7 @@ ticker_list = [
               #  'NVTA',
               #  'MNMD',
                'TVTX','EKSO','ALIM','MASS',
-               'ANEB','RSKD'
+               'ANEB','RSKD','ORIC','APLT','ATOS',
               ]
 
 
@@ -84,8 +84,11 @@ def data_dl():
           yf.download(tickers = 'EKSO' ,period='1d',  interval='5m', start=datetime(2024, 2, 28, 9, 30, 0)),  #$1.98
           yf.download(tickers = 'ALIM' ,period='1d',  interval='5m', start=datetime(2024, 2, 28, 9, 30, 0)),  #$3.38
           yf.download(tickers = 'MASS' ,period='1d',  interval='5m', start=datetime(2024, 2, 29, 9, 30, 0)),  #$7.42
-          yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2024, 3, 5, 9, 30, 0)),   #5.32
+          yf.download(tickers = 'ANEB' ,period='1d',  interval='5m', start=datetime(2024, 3, 5, 9, 30, 0)),   #2.73
           yf.download(tickers = 'RSKD' ,period='1d',  interval='5m', start=datetime(2024, 3, 6, 9, 30, 0)),   #5.32
+          yf.download(tickers = 'ORIC' ,period='1d',  interval='5m', start=datetime(2024, 3, 27, 9, 30, 0)),   #13.35
+          yf.download(tickers = 'APLT' ,period='1d',  interval='5m', start=datetime(2024, 3, 28, 9, 30, 0)),   #6.83
+          yf.download(tickers = 'ATOS' ,period='1d',  interval='5m', start=datetime(2024, 3, 28, 9, 30, 0)),   #1.83
           ]
   return data
 def plot_graph():
