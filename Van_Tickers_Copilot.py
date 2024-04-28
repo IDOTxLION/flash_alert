@@ -73,7 +73,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-email', type=str, help='Email address')
     args = parser.parse_args()
-    
+    print("")
     tickers = read_tickers()
     data = get_stock_data()
     send_email(stock_data_formatted(), args.email)
