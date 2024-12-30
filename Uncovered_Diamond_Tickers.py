@@ -36,7 +36,9 @@ t = "    "
 
 
 ticker_list = [ 
-               'NNDM', 'OPTT', 'RWLK', 'CLSK', 'LTRX', 'MARA', 'PXLW', 'MOSYX','TXT',
+               'NNDM', 'OPTT', 
+               # DELISTED 'RWLK', 
+               'CLSK', 'LTRX', 'MARA', 'PXLW', 'MOSYX','TXT',
                #'GMDA',
                'SCYX', 
                #'EKSO', 
@@ -58,14 +60,77 @@ ticker_list = [
                #'MASS', 
                'PHAT', 
                #'APLT','ORIC','ATOS',
-               'ESPR'
+               'ESPR',
+               #Sell GMDA 
+               # DELISTED 'SPWR',
+               'RIGL',
+               'FVRR',
+               'RCAT',
+               'PLL',
+               'ASPN',
+               'AGEN', 'WULF',
+               'BTDR',
+               #Sell MRAM , PXLW'
+               'DM',
+               #Sell HUBC, ISDR, RMBL, , TRT'
+               'ARBK', 'HUT', 'SDIG',
+               #Sell DAIO , MCRB',
+               'ABCL', 'MKFG,', 
+               # DELISTED 'VLD',
+               #Sell LTRX'
+               #Sell ALIM'
+               'OPAD',
+               'ARDX',
+               'FLGT', 'LASR',
+               #Sell ITI'
+               #Sell SPWR'
+               'ADPT',
+               #Sell SDIG'
+               'IRBT',
+               #Sell AMSC, KSCP, , WATT'
+               'FEIM', 'NEON',
+               'UAMY',
+               #Sell VLDX'
+               #Sell CYBN , MKFG'
+               #Sell MNMD , OTLY'
+               'ARAY', 'ZVRA,', 'ZYME',
+               #Sell ANEB, CHRS, , DTIL'
+               #Sell AGEN, ATOS, ORIC, RCAT, , VSTM'
+               #Sell MASS'
+               'BLND',
+               #Sell NEON'
+               #Sell BWAY'
+               'PPTA',
+               'CLOV',
+               'EOSE', 'WGS',
+               'AXTI',
+               #Sell PHAT'
+               #Sell ABCL, CASS, EVGO, , FLGT'
+               'CHGG',
+               #Sell FVRR'
+               'LNSR',
+               #Sell REAL for a Gain'
+               'AMPH',
+               #Sell OPTT'
+               'ANY',
+               'BCOV',
+               #Sell ASPN, CLOV, EOSE, , INGN'
+               'EXFY', 'XGN',
+               #Sell APLT'
+               #Sell ARBK'
+               'ITRM',
+               #Sell AMPH, AXTI, , LASR'
+               'MYO', 'XERS',
+               #Sell ANY , ARAY'
+               'CLPT',
+               'BFLY',
                ]
 
 def data_dl():
   data = [
           yf.download(tickers = 'NNDM' ,period='1d', start='2020-06-02'),  #$1.79
           yf.download(tickers = 'OPTT' ,period='1d', start='2020-06-16'),  #$1.79
-          yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),  #$1.79
+          #DELISTED yf.download(tickers = 'RWLK' ,period='1d', start='2020-08-25'),  #$1.79
           yf.download(tickers = 'CLSK' ,period='1d', start='2020-09-08'),  #$1.79
           yf.download(tickers = 'LTRX' ,period='1d', start='2020-09-23'),  #$1.79
           yf.download(tickers = 'MARA' ,period='1d', start='2020-09-25'),  #$1.79
@@ -85,12 +150,12 @@ def data_dl():
           #yf.download(tickers = 'ALIM' ,period='1d', start='2023-08-15'),  #$3.22
           yf.download(tickers = 'DTIL' ,period='1d', start='2023-08-18'),  #$1.79
           #yf.download(tickers = 'ITI' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          yf.download(tickers = 'MRAM' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          yf.download(tickers = 'ISDR' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          yf.download(tickers = 'EYPT' ,period='1d',  interval='1d', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
+          yf.download(tickers = 'MRAM' ,period='1d', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+          yf.download(tickers = 'ISDR' ,period='1d', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
+          yf.download(tickers = 'EYPT' ,period='1d', start=datetime(2023, 9, 19, 15, 30, 0)),  #sold on 11/27 at $5.90
           #yf.download(tickers = 'CASS' ,period='1d',  interval='1h', start=datetime(2023, 11, 2, 15, 30, 0)),  #$1.84
-          yf.download(tickers = 'BWAY' ,period='1d',  interval='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
-          yf.download(tickers = 'DCTH' ,period='1d',  interval='1h', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
+          yf.download(tickers = 'BWAY' ,period='1d', start=datetime(2023, 10, 3, 15, 30, 0)), #sold on 11/20 at $4.87
+          yf.download(tickers = 'DCTH' ,period='1d', start=datetime(2023, 9, 25, 15, 30, 0)),  #$3.87, $2.61        
           #yf.download(tickers = 'RELL' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84 -- SELL on 1/11/24
           #yf.download(tickers = 'CYBN' ,period='1d',  interval='1h', start=datetime(2023, 10, 4, 15, 30, 0)),  #$9.84, $10.84
           #yf.download(tickers = 'DAIO' ,period='1d',  interval='1h', start=datetime(2023, 10, 16, 15, 30, 0)), #sold on 11/30 at $2.90
@@ -100,19 +165,127 @@ def data_dl():
           #yf.download(tickers = 'SENS' ,period='1d', start='2023-11-14'),  #$0.52, $0.63
           #yf.download(tickers = 'OTLY' ,period='1d', start='2023-12-01'),  #$0.87, $1.24
           #yf.download(tickers = 'TVTX' ,period='1d',  interval='1h', start=datetime(2023, 12, 6, 11, 8, 0)),  #$7.96
-          yf.download(tickers = 'XOMA' ,period='1d',  interval='1h', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
+          yf.download(tickers = 'XOMA' ,period='1d', start=datetime(2023, 12, 12, 11, 8, 0)),  #$14.72
           #yf.download(tickers = 'ANEB' ,period='1d',  interval='1h', start=datetime(2023, 12, 19, 9, 30, 0)),  #$1.84
-          yf.download(tickers = 'EVGO' ,period='1d',  interval='1h', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
+          yf.download(tickers = 'EVGO' ,period='1d', start=datetime(2024, 1, 2, 9, 30, 0)),  #$3.22
           #yf.download(tickers = 'CHRS' ,period='1d',  interval='5m', start=datetime(2024, 1, 5, 9, 30, 0)),  #$2.76
           #yf.download(tickers = 'NVTA' ,period='1d',  interval='5m', start=datetime(2024, 1, 8, 9, 30, 0)),  #$0.49 -- SELL on 2/16/24
-          yf.download(tickers = 'MNMD' ,period='1d',  interval='1h', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
-          yf.download(tickers = 'REAL' ,period='1d',  interval='1h', start=datetime(2024, 1, 17, 9, 30, 0)),  #$1.56
+          yf.download(tickers = 'MNMD' ,period='1d', start=datetime(2024, 1, 11, 9, 30, 0)),  #$3.96
+          yf.download(tickers = 'REAL' ,period='1d', start=datetime(2024, 1, 17, 9, 30, 0)),  #$1.56
           #yf.download(tickers = 'MASS' ,period='1d',  interval='5m', start=datetime(2024, 2, 13, 9, 30, 0)),  #$6.67
-          yf.download(tickers = 'PHAT' ,period='1d',  interval='5m', start=datetime(2024, 2, 13, 9, 30, 0)),  #$5.98
+          yf.download(tickers = 'PHAT' ,period='1d', start=datetime(2024, 2, 13, 9, 30, 0)),  #$5.98
           #yf.download(tickers = 'APLT' ,period='1d',  interval='5m', start=datetime(2024, 3, 11, 9, 30, 0)),  #$5.80
           #yf.download(tickers = 'ORIC' ,period='1d',  interval='5m', start=datetime(2024, 3, 13, 9, 30, 0)),  #$14.08
           #yf.download(tickers = 'ATOS' ,period='1d',  interval='5m', start=datetime(2024, 3, 19, 9, 30, 0)),  #$1.24
-          yf.download(tickers = 'ESPR' ,period='1d',  interval='5m', start=datetime(2024, 3, 26, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'ESPR' ,period='1d', start=datetime(2024, 3, 26, 9, 30, 0)),  #$2.39
+          #Sell GMDA [Stock] — 4/1/24
+          #Buy SPWR [Stock] — 4/5/24
+          # DELISTED yf.download(tickers = 'SPWR' ,period='1d', start=datetime(2024, 4, 5, 9, 30, 0)),  #$2.39
+          #Buy RIGL [Stock] — 4/8/24
+          yf.download(tickers = 'RIGL' ,period='1d', start=datetime(2024, 4, 8, 9, 30, 0)),  #$2.39
+          #Buy FVRR [Stock] — 4/11/24
+          yf.download(tickers = 'FVRR' ,period='1d', start=datetime(2024, 4, 11, 9, 30, 0)),  #$2.39
+          #Buy RCAT [Stock] — 4/15/24
+          yf.download(tickers = 'RCAT' ,period='1d', start=datetime(2024, 4, 15, 9, 30, 0)),  #$2.39
+          #Buy PLL [Stock] — 4/19/24
+          yf.download(tickers = 'PLL' ,period='1d', start=datetime(2024, 4, 15, 9, 30, 0)),  #$2.39
+          #Buy ASPN [Stock] — 5/2/24
+          yf.download(tickers = 'ASPN' ,period='1d', start=datetime(2024, 5, 2, 9, 30, 0)),  #$2.39
+          #Buy AGEN & WULF [Stock] — 5/31/24
+          yf.download(tickers = 'AGEN' ,period='1d', start=datetime(2024, 5, 31, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'WULF' ,period='1d', start=datetime(2024, 5, 31, 9, 30, 0)),  #$2.39
+          #Buy BTDR [Stock] — 6/3/24
+          yf.download(tickers = 'BTDR' ,period='1d', start=datetime(2024, 6, 3, 9, 30, 0)),  #$2.39
+          #Sell MRAM & PXLW [Stock] — 6/4/24
+          #Buy DM [Stock] — 6/10/24
+          yf.download(tickers = 'DM' ,period='1d', start=datetime(2024, 6, 10, 9, 30, 0)),  #$2.39
+          #Sell HUBC, ISDR, RMBL, & TRT [Stock] — 6/10/24
+          #Buy ARBK, HUT, & SDIG [Stock] — 6/11/24
+          yf.download(tickers = 'ARBK' ,period='1d', start=datetime(2024, 6, 11, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'HUT' ,period='1d', start=datetime(2024, 6, 11, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'SDIG' ,period='1d', start=datetime(2024, 6, 11, 9, 30, 0)),  #$2.39
+          #Sell DAIO & MCRB [Stock] — 6/11/24
+          #Buy ABCL, MKFG, & VLD [Stock] — 6/12/24
+          yf.download(tickers = 'ABCL' ,period='1d', start=datetime(2024, 6, 12, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'MKFG' ,period='1d', start=datetime(2024, 6, 12, 9, 30, 0)),  #$2.39
+          #DELISTED yf.download(tickers = 'VLD' ,period='1d', start=datetime(2024, 6, 12, 9, 30, 0)),  #$2.39
+          #Sell LTRX [Stock] — 6/12/24
+          #Sell ALIM [Stock] — 6/24/24
+          #Buy OPAD — 7/12/24
+          yf.download(tickers = 'OPAD' ,period='1d', start=datetime(2024, 7, 12, 9, 30, 0)),  #$2.39
+          #Buy ARDX [Stock] — 7/29/24
+          yf.download(tickers = 'ARDX' ,period='1d', start=datetime(2024, 7, 12, 9, 30, 0)),  #$2.39
+          #Buy FLGT & LASR [Stock] — 8/2/24
+          yf.download(tickers = 'FLGT' ,period='1d', start=datetime(2024, 8, 2, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'LASR' ,period='1d', start=datetime(2024, 8, 2, 9, 30, 0)),  #$2.39
+          #Sell ITI [Stock] — 8/9/24
+          #Sell SPWR [Stock] — 8/13/24
+          #Buy ADPT [Stock] — 8/16/24
+          yf.download(tickers = 'ADPT' ,period='1d', start=datetime(2024, 8, 16, 9, 30, 0)),  #$2.39
+          #Sell SDIG [Stock] — 8/21/24
+          #Buy IRBT [Stock] — 8/21/24
+          yf.download(tickers = 'IRBT' ,period='1d', start=datetime(2024, 8, 21, 9, 30, 0)),  #$2.39
+          #Sell AMSC, KSCP, & WATT [Stock] — 8/29/24
+          #Buy FEIM & NEON [Stock] — 8/29/24
+          yf.download(tickers = 'FEIM' ,period='1d', start=datetime(2024, 8, 29, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'NEON' ,period='1d', start=datetime(2024, 8, 29, 9, 30, 0)),  #$2.39
+          #Buy UAMY [Stock] — 9/5/24
+          yf.download(tickers = 'UAMY' ,period='1d', start=datetime(2024, 9, 5, 9, 30, 0)),  #$2.39
+          #Sell VLDX [Stock] — 9/17/24
+          #Sell CYBN & MKFG [Stock] — 9/19/24
+          #Sell MNMD & OTLY [Stock] — 9/20/24
+          #Buy ARAY, ZVRA, & ZYME [Stock] — 9/23/24
+          yf.download(tickers = 'ARAY' ,period='1d', start=datetime(2024, 9, 23, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'ZVRA' ,period='1d', start=datetime(2024, 9, 23, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'ZYME' ,period='1d', start=datetime(2024, 9, 23, 9, 30, 0)),  #$2.39
+          #Sell ANEB, CHRS, & DTIL [Stock] — 9/23/24
+          #Sell AGEN, ATOS, ORIC, RCAT, & VSTM [Stock] — 9/24/24
+          #Sell MASS [Stock] — 9/25/24
+          #Buy BLND [Stock] — 9/26/24
+          yf.download(tickers = 'BLND' ,period='1d', start=datetime(2024, 9, 26, 9, 30, 0)),  #$2.39
+          #Sell NEON [Stock] — 9/26/24
+          #Sell BWAY [Stock] — 9/30/24
+          #Buy PPTA [Stock] — 10/2/24
+          yf.download(tickers = 'PPTA' ,period='1d', start=datetime(2024, 10, 2, 9, 30, 0)),  #$2.39
+          #Buy CLOV [Stock] — 10/3/24
+          yf.download(tickers = 'CLOV' ,period='1d', start=datetime(2024, 10, 3, 9, 30, 0)),  #$2.39
+          #Buy EOSE & WGS [Stock] — 10/4/24
+          yf.download(tickers = 'EOSE' ,period='1d', start=datetime(2024, 10, 4, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'WGS' ,period='1d', start=datetime(2024, 10, 4, 9, 30, 0)),  #$2.39
+          #Buy AXTI [Stock] — 10/7/24
+          yf.download(tickers = 'AXTI' ,period='1d', start=datetime(2024, 10, 7, 9, 30, 0)),  #$2.39
+          #Sell PHAT [Stock] — 10/7/24
+          #Sell ABCL, CASS, EVGO, & FLGT [Stock] — 10/9/24
+          #Buy CHGG [Stock] — 10/10/24
+          yf.download(tickers = 'CHGG' ,period='1d', start=datetime(2024, 10, 10, 9, 30, 0)),  #$2.39
+          #Sell FVRR [Stock] — 10/11/24
+          #Buy LNSR [Stock] — 10/16/24
+          yf.download(tickers = 'LNSR' ,period='1d', start=datetime(2024, 10, 16, 9, 30, 0)),  #$2.39
+          #Sell REAL for a Gain [Stock] — 10/17/24
+          #Buy AMPH [Stock] — 10/17/24
+          yf.download(tickers = 'AMPH' ,period='1d', start=datetime(2024, 10, 17, 9, 30, 0)),  #$2.39
+          #Sell OPTT [Stock] — 10/29/24
+          #Buy ANY [Stock] — 11/11/24
+          yf.download(tickers = 'ANY' ,period='1d', start=datetime(2024, 11, 11, 9, 30, 0)),  #$2.39
+          #Buy BCOV [Stock] — 11/15/24
+          yf.download(tickers = 'BCOV' ,period='1d', start=datetime(2024, 11, 15, 9, 30, 0)),  #$2.39
+          #Sell ASPN, CLOV, EOSE, & INGN [Stocks] — 11/22/24
+          #Buy EXFY & XGN [Stock] — 11/22/24
+          yf.download(tickers = 'EXFY' ,period='1d', start=datetime(2024, 11, 22, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'XGN' ,period='1d', start=datetime(2024, 11, 22, 9, 30, 0)),  #$2.39
+          #Sell APLT [Stock] — 12/3/24
+          #Sell ARBK [Stock] — 12/3/24
+          #Buy ITRM [Stock] — 12/4/24
+          yf.download(tickers = 'ITRM' ,period='1d', start=datetime(2024, 12, 4, 9, 30, 0)),  #$2.39
+          #Sell AMPH, AXTI, & LASR [Stock] — 12/4/24
+          #Buy MYO & XERS [Stock] — 12/6/24
+          yf.download(tickers = 'MYO' ,period='1d', start=datetime(2024, 12, 6, 9, 30, 0)),  #$2.39
+          yf.download(tickers = 'XERS' ,period='1d', start=datetime(2024, 12, 6, 9, 30, 0)),  #$2.39
+          #Sell ANY & ARAY [Stock] — 12/10/24
+          #Buy CLPT [Stock] — 12/10/24
+          yf.download(tickers = 'CLPT' ,period='1d', start=datetime(2024, 12, 10, 9, 30, 0)),  #$2.39
+          #Buy BFLY [Stock] — 12/11/24   
+          yf.download(tickers = 'BFLY' ,period='1d', start=datetime(2024, 12, 11, 9, 30, 0)),  #$2.39
           ]
   return data
 def plot_graph():
