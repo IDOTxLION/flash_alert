@@ -44,12 +44,12 @@ ticker_list = [
                'CASS',
                #'BWAY',
                'ITI','CYBN','MCRB','RMBL',
-               #  'INGN',
-               'GMDA','HUBC','OTLY', 'SENS','WATT','DAIO','CHRS',
+               #  'INGN','GMDA',
+               'HUBC','OTLY', 'SENS','WATT','DAIO','CHRS',
               #  'NVTA',
               #  'MNMD',
                'TVTX','EKSO','ALIM','MASS',
-               'ANEB','RSKD','ORIC','APLT','ATOS',
+               'ANEB','RSKD','ORIC','APLT','ATOS','ESPR','SPWR','RIGL','FVRR',
               ]
 
 
@@ -71,7 +71,7 @@ def data_dl():
           yf.download(tickers = 'MCRB' ,period='1d', interval='1h', start=datetime(2023, 12, 1, 9, 32, 0)),  #$1.24, $0.99 
           yf.download(tickers = 'RMBL' ,period='1d', interval='1h', start=datetime(2023, 12, 4, 15, 35, 0)),  #$10.58, $5.67
           # yf.download(tickers = 'INGN' ,period='1d', interval='1h', start=datetime(2023, 12, 5, 14, 44, 0)),  #$10.30, $5.00
-          yf.download(tickers = 'GMDA' ,period='1d', interval='1h', start=datetime(2023, 12, 5, 14, 44, 0)),  #$3.30, $0.32
+          #yf.download(tickers = 'GMDA' ,period='1d', interval='1h', start=datetime(2023, 12, 5, 14, 44, 0)),  #$3.30, $0.32
           yf.download(tickers = 'HUBC' ,period='1d', interval='1h', start=datetime(2023, 12, 6, 14, 44, 0)),  #$2.39, $0.25
           yf.download(tickers = 'OTLY' ,period='1d', interval='1h', start=datetime(2023, 12, 6, 12, 44, 0)),  #$0.87, $1.24
           yf.download(tickers = 'SENS' ,period='1d', interval='1h', start=datetime(2023, 12, 6, 14, 33, 0)),  #$0.52, $0.63
@@ -89,6 +89,10 @@ def data_dl():
           yf.download(tickers = 'ORIC' ,period='1d',  interval='5m', start=datetime(2024, 3, 27, 9, 30, 0)),   #13.35
           yf.download(tickers = 'APLT' ,period='1d',  interval='5m', start=datetime(2024, 3, 28, 9, 30, 0)),   #6.83
           yf.download(tickers = 'ATOS' ,period='1d',  interval='5m', start=datetime(2024, 3, 28, 9, 30, 0)),   #1.83
+          yf.download(tickers = 'ESPR' ,period='1d',  interval='5m', start=datetime(2024, 4, 2, 9, 30, 0)),   #2.85
+          yf.download(tickers = 'SPWR' ,period='1d',  interval='5m', start=datetime(2024, 4, 8, 9, 30, 0)),   #2.65
+          yf.download(tickers = 'RIGL' ,period='1d',  interval='5m', start=datetime(2024, 4, 9, 9, 30, 0)),   #1.23
+          yf.download(tickers = 'FVRR' ,period='1d',  interval='5m', start=datetime(2024, 4, 12, 9, 30, 0)),   #20.09
           ]
   return data
 def plot_graph():
